@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DavidMedeiros/collections-backend#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
   }
 }
