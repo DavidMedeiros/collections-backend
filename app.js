@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const request = require('supertest');
 
 const app = express();
 
@@ -25,3 +26,9 @@ app.put('/', function(req, res) {
 app.delete('/', function(req, res) {
     res.send('Delete request');
 });
+ 
+app.get('/user', function(req, res) {
+  res.status(200).json({ name: 'john' });
+});
+ 
+module.exports = app;
