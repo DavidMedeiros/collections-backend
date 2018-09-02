@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DavidMedeiros/collections-backend#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "mongoose": "^5.2.12",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
