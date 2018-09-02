@@ -24,37 +24,39 @@ exports.show = (req, res) => {
 exports.create = (req, res) => {
     var collection = new Collection(req.body);
 
+    console.log(req.body);
+
     collection.save()
-    .catch((err) => {
-        res.status(RequestStatus.BAD_REQUEST).send(err);
-    })
-    .then((createdCollection) => {
-        var res_json = {
-            "message": "Collection created", 
-            "data": {
-                "collection": createdCollection
-            }
-        };
-        res.status(RequestStatus.OK).json(res_json);
-    });
+        .catch((err) => {
+            res.status(RequestStatus.BAD_REQUEST).send(err);
+        })
+        .then((createdCollection) => {
+            var res_json = {
+                "message": "Collection created",
+                "data": {
+                    "collection": createdCollection
+                }
+            };
+            res.status(RequestStatus.OK).json(res_json);
+        });
 };
 
 exports.update = (req, res) => {
-	Collection.updateOne({ _id: req.params.collection_id }, { $set: req.body })
-		.then(() => {
-			res.status(RequestStatus.OK).send('Collection updated!');
-		})
-		.catch((error) => {
-			res.status(RequestStatus.BAD_REQUEST).json(error);
-		});
+    Collection.updateOne({ _id: req.params.collection_id }, { $set: req.body })
+        .then(() => {
+            res.status(RequestStatus.OK).send('Collection updated!');
+        })
+        .catch((error) => {
+            res.status(RequestStatus.BAD_REQUEST).json(error);
+        });
 };
 
 exports.delete = (req, res) => {
-	Collection.deleteOne({ _id: req.params.collection_id })
-		.then(() => {
-			res.status(RequestStatus.OK).send('Collection deleted.');
-		})
-		.catch((error) => {
-			res.status(RequestStatus.BAD_REQUEST).send(error);
-		});
+    Collection.deleteOne({ _id: req.params.collection_id })
+        .then(() => {
+            res.status(RequestStatus.OK).send('Collection deleted.');
+        })
+        .catch((error) => {
+            res.status(RequestStatus.BAD_REQUEST).send(error);
+        });
 };

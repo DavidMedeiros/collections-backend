@@ -7,7 +7,6 @@ const UNPROCESSABLE_ENTITY_STATUS = 422;
 const INTERNAL_SERVER_ERROR_STATUS = 500;
 
 class RequestStatus {
-
   static get UNAUTHORIZED() {
     return UNAUTHORIZED_STATUS;
   }
