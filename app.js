@@ -2,8 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const request = require('supertest');
+var mongoose = require('mongoose');
+
+// config files
+var db = require('./config/db');
 
 const app = express();
+
+mongoose.connect(db.local_url);
 
 app.use(morgan('combined'));
 

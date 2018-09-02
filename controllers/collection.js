@@ -23,7 +23,7 @@ exports.show = (req, res) => {
 
 exports.create = (req, res) => {
     var collection = new Collection(req.body);
-    
+
     collection.save()
     .catch((err) => {
         res.status(RequestStatus.BAD_REQUEST).send(err);
@@ -34,7 +34,8 @@ exports.create = (req, res) => {
             "data": {
                 "collection": createdCollection
             }
-        }
+        };
+        res.status(RequestStatus.OK).json(res_json);
     });
 };
 
