@@ -1,9 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-var bodyParser     = require('body-parser');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+const swagger = require('swagger-express');
 const app = express();
 
 // config files
@@ -11,7 +12,19 @@ var db = require('./config/db');
 
 mongoose.connect(db.local_url, { useNewUrlParser: true });
 
-app.use(morgan('combined'));
+// API documentation UI
+app.use(swagger.init(app, {
+    apiVersion: '1.0',
+    swaggerVersion: '1.0',
+    basePath: 'http://localhost:3000',
+    swaggerURL: '/api/swagger',
+    swaggerJSON: '/api-docs.json',
+    swaggerUI: './doc/swagger/',
+    apis: ['./routes/collection.js']
+  }));
+  
+
+app.use(morgan('dev'));
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
@@ -25,27 +38,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Basic routes
-app.get('/', function(req, res) {
-    res.send('Get request');
-});
-
-app.post('/', function(req, res) {
-    res.send('Post request');
-});
-
-app.put('/', function(req, res) {
-    res.send('Put request');
-});
-
-app.delete('/', function(req, res) {
-    res.send('Delete request');
-});
-
-app.get('/user', function(req, res) {
-    res.status(200).json({ name: 'john' });
-});
 
 // Api routes
 var collectionRoutes = require('./routes/collection');
