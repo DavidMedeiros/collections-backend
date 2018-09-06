@@ -1,6 +1,6 @@
 /**
  * @swagger
- * resourcePath: /assss/collections
+ * resourcePath: /api/collection
  * description: All about API
  */
 
@@ -11,28 +11,17 @@ var collectionController = require('../controllers/collection');
 
 /**
  * @swagger
- * path: /login
+ * path: /api/collection
  * operations:
- *   -  httpMethod: POST
- *      summary: Login with username and password
- *      notes: Returns a user based on username
- *      responseClass: User
- *      nickname: login
+ *   -  httpMethod: GET
+ *      summary: Get all collections
+ *      notes: Returns all collections 
+ *      responseClass: Collection
+ *      nickname: collection
  *      consumes: 
- *        - text/html
- *      parameters:
- *        - name: username
- *          description: Your username
- *          paramType: query
- *          required: true
- *          dataType: string
- *        - name: password
- *          description: Your password
- *          paramType: query
- *          required: true
- *          dataType: string
+ *        - application/json
  */
-
+ 
 router.get('/', collectionController.index);
 
 router.get('/:collection_id', collectionController.show);

@@ -1116,21 +1116,12 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     }
 
     HeaderView.prototype.events = {
-      'click #show-pet-store-icon': 'showPetStore',
-      'click #show-wordnik-dev-icon': 'showWordnikDev',
       'click #explore': 'showCustom',
       'keyup #input_baseUrl': 'showCustomOnKeyup',
       'keyup #input_apiKey': 'showCustomOnKeyup'
     };
 
     HeaderView.prototype.initialize = function() {};
-
-    HeaderView.prototype.showPetStore = function(e) {
-      return this.trigger('update-swagger-ui', {
-        discoveryUrl: "http://petstore.swagger.wordnik.com/api/api-docs.json",
-        apiKey: "special-key"
-      });
-    };
 
     HeaderView.prototype.showWordnikDev = function(e) {
       return this.trigger('update-swagger-ui', {
