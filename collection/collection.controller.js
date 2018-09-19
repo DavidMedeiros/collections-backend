@@ -1,4 +1,4 @@
-var Collection = require('../models/Collection');
+var Collection = require('./collection.model');
 var RequestStatus = require('../constants/requestStatus');
 
 exports.index = (req, res) => {

@@ -7,7 +7,7 @@
 var express = require('express');
 var router = express.Router();
 
-var collectionController = require('../controllers/collection');
+var collectionController = require('./collection.controller');
 
 /**
  * @swagger
