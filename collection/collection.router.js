@@ -6,8 +6,16 @@
 
 var express = require('express');
 var router = express.Router();
-
+var RequestStatus = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
+
+function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        next();
+    } else{
+        res.status(RequestStatus.UNAUTHORIZED).send('User not logged.');
+    }
+}
 
 /**
  * @swagger
@@ -22,7 +30,7 @@ var collectionController = require('./collection.controller');
  *        - application/json
  */
  
-router.get('/', collectionController.index);
+router.get('/', checkAuthentication, collectionController.index);
 
 router.get('/:collection_id', collectionController.show);
 

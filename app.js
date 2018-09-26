@@ -9,6 +9,8 @@ var session = require('express-session');
 const swagger = require('swagger-express');
 const app = express();
 var MongoStore = require('connect-mongo')(session);
+var cors = require('cors');
+var corsConfig = require('./config/cors');
 
 // config files
 var db = require('./config/db');
@@ -20,6 +22,12 @@ if (ENV == 'production') {
   db_url = db.url;
 } else {
   db_url = db.local_url;
+}
+
+if (ENV == 'production') {
+  app.use(cors(corsConfig));
+} else {
+  app.use(cors());
 }
 
 mongoose.connect(db_url, { useNewUrlParser: true });
@@ -76,10 +84,10 @@ var collectionRoutes = require('./collection/collection.router');
 app.use('/api/collection', collectionRoutes);
 
 var userRoutes = require('./user/user.router');
-app.use('/user', userRoutes);
+app.use('/api/user', userRoutes);
 
 var authRoutes = require('./user/auth.router');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // start app
 app.listen(PORT);
