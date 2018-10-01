@@ -1,62 +1,63 @@
-var Collection = require('./collection.model');
+const collectionRepository = require("./collection.repository");
+
 var RequestStatus = require('../constants/requestStatus');
 
-exports.index = (req, res) => {
-    Collection.find({})
-        .then((result) => {
-            res.status(RequestStatus.OK).json(result);
-        })
-        .catch((err) => {
-            res.status(RequestStatus.BAD_REQUEST).send(err);
-        });
+exports.index = async (req, res) => {
+  try {
+    const collections = await collectionRepository.findAll();
+    res.status(RequestStatus.OK).json(collections);
+  } catch (err) {
+    res.status(RequestStatus.BAD_REQUEST).send(err);
+  }
 };
 
-exports.show = (req, res) => {
-    Collection.findById(req.params.collection_id)
-        .then((user) => {
-            res.status(RequestStatus.OK).json(user);
-        })
-        .catch((err) => {
-            res.status(RequestStatus.BAD_REQUEST).json(err);
-        });
+exports.show = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    const collection = await collectionRepository.findById(collectionId);
+
+    res.status(RequestStatus.OK).json(collection);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).json(err);
+  }
 };
 
-exports.create = (req, res) => {
-    var collection = new Collection(req.body);
 
-    console.log(req.body);
+exports.create = async (req, res) => {
+  try {
+    const createdCollection = await collectionRepository.create(req.body);
 
-    collection.save()
-        .catch((err) => {
-            res.status(RequestStatus.BAD_REQUEST).send(err);
-        })
-        .then((createdCollection) => {
-            var res_json = {
-                "message": "Collection created",
-                "data": {
-                    "collection": createdCollection
-                }
-            };
-            res.status(RequestStatus.OK).json(res_json);
-        });
+    const res_json = {
+      "message": "Collection created",
+      "data": {
+        "collection": createdCollection
+      }
+    };
+
+    res.status(RequestStatus.OK).json(res_json);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(err);
+  }
 };
 
-exports.update = (req, res) => {
-    Collection.updateOne({ _id: req.params.collection_id }, { $set: req.body })
-        .then(() => {
-            res.status(RequestStatus.OK).send('Collection updated!');
-        })
-        .catch((error) => {
-            res.status(RequestStatus.BAD_REQUEST).json(error);
-        });
+exports.update = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    const updatedCollection = await collectionRepository.findByIdAndUpdate(collectionId, req.body);
+
+    res.status(RequestStatus.OK).json({result: updatedCollection, msg: 'Collection updated.'});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).json(error);
+  }
 };
 
-exports.delete = (req, res) => {
-    Collection.deleteOne({ _id: req.params.collection_id })
-        .then(() => {
-            res.status(RequestStatus.OK).send('Collection deleted.');
-        })
-        .catch((error) => {
-            res.status(RequestStatus.BAD_REQUEST).send(error);
-        });
+exports.delete = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    await collectionRepository.deleteById(collectionId);
+
+    res.status(RequestStatus.OK).json({msg: 'Collection deleted.'});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
 };

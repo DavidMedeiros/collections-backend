@@ -41,7 +41,7 @@ app.use(swagger.init(app, {
     swaggerURL: '/api/swagger',
     swaggerJSON: '/api-docs.json',
     swaggerUI: './doc/swagger/',
-    apis: ['./collection/collection.router.js']
+    apis: ['./collection/collection.router.js', './album/album.router.js', './artist/artist.router.js', './track/track.router.js']
 }));
 
 // Session Secutiry
@@ -82,6 +82,15 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // Api routes
 var collectionRoutes = require('./collection/collection.router');
 app.use('/api/collection', collectionRoutes);
+
+var albumRoutes = require('./album/album.router');
+app.use('/api/album', albumRoutes);
+
+var artistRoutes = require('./artist/artist.router');
+app.use('/api/artist', artistRoutes);
+
+var trackRoutes = require('./track/track.router');
+app.use('/api/track', trackRoutes);
 
 var userRoutes = require('./user/user.router');
 app.use('/api/user', userRoutes);

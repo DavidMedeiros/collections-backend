@@ -1,6 +1,6 @@
 var User = require('./user.model');
 var RequestStatus = require('../constants/requestStatus');
-var RequestMsgs = require('../constants/requestMsgs')
+var RequestMsgs = require('../constants/requestMsgs');
 
 exports.index = (req, res) => {
   User.find({})
@@ -23,8 +23,9 @@ exports.show = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  // TODO verificação de senhas iguais
   var user = new User(req.body);
-  user.profile_name = req.body.username;
+  user.name = req.body.username;
 
   user.generateHash(req.body.password)
   	.then((hash) => {

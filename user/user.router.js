@@ -10,7 +10,7 @@ var userController = require('./user.controller');
  * @apiVersion 1.0.0
  *
  * @apiSuccess {Object[]} users All users registred.
- * @apiSuccess {String} user.profile_name  Profile name of the User.
+ * @apiSuccess {String} user.name  Profile name of the User.
  * @apiSuccess {String} user.username  Username name of the User.
  * @apiSuccess {String} user.email  Email of the User.
  */
@@ -24,7 +24,7 @@ router.get('/', userController.index);
  *
  * @apiParam id Users unique ID.
  *
- * @apiSuccess {String} profile_name  Profile name of the User.
+ * @apiSuccess {String} name of the User.
  * @apiSuccess {String} username  Username name of the User.
  * @apiSuccess {String} email  Email of the User.
  */
@@ -36,12 +36,12 @@ router.get('/:user_id', userController.show);
  * @apiGroup User
  * @apiVersion 1.0.0
  *
- * @apiParam profile_name  Profile name of the User.
+ * @apiParam name Profile name of the User.
  * @apiParam username  Username name of the User.
  * @apiParam email  Email of the User.
  *
  * @apiSuccess {Object} result The operation result.
- * @apiSuccess {String} result.profile_name  Profile name of the User.
+ * @apiSuccess {String} result.name  Profile name of the User.
  * @apiSuccess {String} result.username  Username name of the User.
  * @apiSuccess {String} result.email  Email of the User.
  * @apiSuccess {String} msg Response message.
@@ -54,12 +54,12 @@ router.post('/', userController.create);
  * @apiGroup User
  * @apiVersion 1.0.0
  *
- * @apiParam [profile_name]  Optional updated profile_name field to the User.
+ * @apiParam [name]  Optional updated name field to the User.
  * @apiParam [username]  Optional updated username name to the User.
  * @apiParam [email]  Optional updated email to the User.
  *
  * @apiSuccess {Object} result The operation result.
- * @apiSuccess {String} result.profile_name  Profile name of the User.
+ * @apiSuccess {String} result.name  Profile name of the User.
  * @apiSuccess {String} result.username  Username name of the User.
  * @apiSuccess {String} result.email  Email of the User.
  * @apiSuccess {String} msg Response message.

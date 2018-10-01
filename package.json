@@ -1,0 +1,35 @@
+{
+  "name": "collections-backend",
+  "version": "1.0.0",
+  "description": ":computer: Projeto desenvolvido como atividade da disciplina de Desenvolvimento Web",
+  "main": "node app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidMedeiros/collections-backend.git"
+  },
+  "author": "David Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidMedeiros/collections-backend/issues"
+  },
+  "homepage": "https://github.com/DavidMedeiros/collections-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^2.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.12",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "swagger-express": "^1.0.5"
+  },
+  "devDependencies": {
+    "supertest": "^3.1.0"
+  }
+}

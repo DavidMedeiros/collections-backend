@@ -4,7 +4,14 @@ var Schema = mongoose.Schema;
 var CollectionSchema = new Schema({
     name: {
         type: String,
+        minlength: 3,
+        maxlength: 50,
         required: true
+    },
+    description: {
+      type: String,
+      maxlength: 140,
+      default: "No description."
     },
     _items: {
         type: [

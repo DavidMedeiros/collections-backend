@@ -8,17 +8,17 @@ var validateEmail = function(email) {
 };
 
 var UserSchema = new Schema({
-	profile_name: {
+	name: {
 		type: String,
-		minlength: 5,
-		maxlength: 18
+		minlength: 3,
+		maxlength: 50
 	},
 	username: {
 		type: String,
 		required: true,
 		unique: true,
-		minlength: 5,
-		maxlength: 18
+		minlength: 3,
+		maxlength: 15
 	},
 	email: {
 		type: String,
@@ -42,10 +42,46 @@ var UserSchema = new Schema({
     required: true,
     enum: ['male', 'female', 'other']
   },
-  description: {
+  bio: {
     type: String,
     maxlength: 140,
     default: "No description."
+  },
+  _collections: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Collection'
+      }
+    ],
+    default: []
+  },
+  _following_users: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    default: []
+  },
+  _following_collections: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Collection'
+      }
+    ],
+    default: []
+  },
+  _followers: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    default: []
   }
 });
 
