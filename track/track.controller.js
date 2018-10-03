@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
   try {
     const createdTrack = await trackRepository.create(req.body);
 
-    res.status(RequestStatus.OK).json({message: "Track created", data: createdTrack});
+    res.status(RequestStatus.CREATED_STATUS).json({message: "Track created", data: createdTrack});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

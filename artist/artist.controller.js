@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
   try {
     const createdArtist = await artistRepository.create(req.body);
 
-    res.status(RequestStatus.OK).json({message: "Artist created", data: createdArtist});
+    res.status(RequestStatus.CREATED_STATUS).json({message: "Artist created", data: createdArtist});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

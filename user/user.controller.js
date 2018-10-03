@@ -39,7 +39,7 @@ exports.create = (req, res) => {
         } else if (err) {
           res.status(RequestStatus.BAD_REQUEST).json(err);
         } else {
-          res.status(RequestStatus.OK).json({ result: createdUser, msg: 'User created.' });
+          res.status(RequestStatus.CREATED_STATUS).json({ result: createdUser, msg: 'User created.' });
         }
   		});
   	})

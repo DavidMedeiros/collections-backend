@@ -24,3 +24,11 @@ exports.deleteById = async (id) => {
 exports.findOne = async (data) => {
   return await Collection.findOne(data);
 };
+
+exports.addAlbum = async (collection, albumId) => {
+  var items = collection._items;
+  items.push(albumId);
+  collection._items = items;
+  
+  return await collection.save();
+};

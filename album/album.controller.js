@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
   try {
     const createdAlbum = await albumRepository.create(req.body);
 
-    res.status(RequestStatus.OK).json({message: "Album created", data: createdAlbum});
+    res.status(RequestStatus.CREATED_STATUS).json({message: "Album created", data: createdAlbum});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
