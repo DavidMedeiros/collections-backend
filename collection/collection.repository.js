@@ -2,7 +2,7 @@ var Collection = require('./collection.model');
 
 exports.create = async (data) => {
   const collection = new Collection(data);
-  await collection.save();
+  return await collection.save();
 };
 
 exports.findAll = async () => {
@@ -14,7 +14,7 @@ exports.findById = async (id) => {
 };
 
 exports.findByIdAndUpdate = async (id, data) => {
-  await Collection.findOneAndUpdate(id, {$set: data});
+  return await Collection.findOneAndUpdate(id, {$set: data});
 };
 
 exports.deleteById = async (id) => {

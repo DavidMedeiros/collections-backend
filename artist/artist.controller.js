@@ -6,8 +6,8 @@ exports.index = async (req, res) => {
   try {
     const artists = await artistRepository.findAll();
     res.status(RequestStatus.OK).json(artists);
-  } catch (err) {
-    res.status(RequestStatus.BAD_REQUEST).send(err);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
 
@@ -18,7 +18,7 @@ exports.show = async (req, res) => {
 
     res.status(RequestStatus.OK).json(artist);
   } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).json(err);
+    res.status(RequestStatus.BAD_REQUEST).json(error);
   }
 };
 
@@ -26,16 +26,9 @@ exports.create = async (req, res) => {
   try {
     const createdArtist = await artistRepository.create(req.body);
 
-    const res_json = {
-      "message": "Artist created",
-      "data": {
-        "artist": createdArtist
-      }
-    };
-
-    res.status(RequestStatus.OK).json(res_json);
+    res.status(RequestStatus.OK).json({message: "Artist created", data: createdArtist});
   } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).send(err);
+    res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
 
@@ -44,7 +37,7 @@ exports.update = async (req, res) => {
     const artistId = req.params.artist_id;
     const updatedArtist = await artistRepository.findByIdAndUpdate(artistId, req.body);
 
-    res.status(RequestStatus.OK).json({result: updatedArtist, msg: 'Artist updated.'});
+    res.status(RequestStatus.OK).json({message: "Artist updated", data: updatedArtist});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -55,7 +48,7 @@ exports.delete = async (req, res) => {
     const artistId = req.params.artist_id;
     await artistRepository.deleteById(artistId);
 
-    res.status(RequestStatus.OK).json({msg: 'Artist deleted.'});
+    res.status(RequestStatus.OK).json({message: "Artist deleted"});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

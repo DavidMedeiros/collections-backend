@@ -2,7 +2,7 @@ var Artist = require('./artist.model');
 
 exports.create = async (data) => {
   const artist = new Artist(data);
-  await artist.save();
+  return await artist.save();
 };
 
 exports.findAll = async () => {
@@ -14,7 +14,7 @@ exports.findById = async (id) => {
 };
 
 exports.findByIdAndUpdate = async (id, data) => {
-  await Artist.findOneAndUpdate(id, {$set: data});
+  return await Artist.findOneAndUpdate(id, {$set: data});
 };
 
 exports.deleteById = async (id) => {

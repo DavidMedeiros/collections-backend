@@ -1,60 +1,55 @@
-var Track = require('./track.model');
+const trackRepository = require("../track/track.repository");
+
 var RequestStatus = require('../constants/requestStatus');
 
-exports.index = (req, res) => {
-  Track.find({})
-    .then((result) => {
-      res.status(RequestStatus.OK).json(result);
-    })
-    .catch((err) => {
-      res.status(RequestStatus.BAD_REQUEST).send(err);
-    });
+exports.index = async (req, res) => {
+  try {
+    const tracks = await trackRepository.findAll();
+    res.status(RequestStatus.OK).json(tracks);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
 };
 
-exports.show = (req, res) => {
-  Track.findById(req.params.track_id)
-    .then((user) => {
-      res.status(RequestStatus.OK).json(user);
-    })
-    .catch((err) => {
-      res.status(RequestStatus.BAD_REQUEST).json(err);
-    });
+exports.show = async (req, res) => {
+  try {
+    const trackId = req.params.track_id;
+    const track = await trackRepository.findById(trackId);
+
+    res.status(RequestStatus.OK).json(track);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).json(error);
+  }
 };
 
-exports.create = (req, res) => {
-  var track = new Track(req.body);
+exports.create = async (req, res) => {
+  try {
+    const createdTrack = await trackRepository.create(req.body);
 
-  track.save()
-    .catch((err) => {
-      res.status(RequestStatus.BAD_REQUEST).send(err);
-    })
-    .then((createdTrack) => {
-      var res_json = {
-        "message": "Track created",
-        "data": {
-          "track": createdTrack
-        }
-      };
-      res.status(RequestStatus.OK).json(res_json);
-    });
+    res.status(RequestStatus.OK).json({message: "Track created", data: createdTrack});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
 };
 
-exports.update = (req, res) => {
-  Track.updateOne({ _id: req.params.track_id }, { $set: req.body })
-    .then((updatedTrack) => {
-      res.status(RequestStatus.OK).json({result: updatedTrack, msg: 'Track updated.'});
-    })
-    .catch((error) => {
-      res.status(RequestStatus.BAD_REQUEST).json(error);
-    });
+exports.update = async (req, res) => {
+  try {
+    const trackId = req.params.track_id;
+    const updatedTrack = await trackRepository.findByIdAndUpdate(trackId, req.body);
+
+    res.status(RequestStatus.OK).json({message: "Track updated", data: updatedTrack});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).json(error);
+  }
 };
 
-exports.delete = (req, res) => {
-  Track.deleteOne({ _id: req.params.track_id })
-    .then(() => {
-      res.status(RequestStatus.OK).json({msg: 'Track deleted.'});
-    })
-    .catch((error) => {
-      res.status(RequestStatus.BAD_REQUEST).send(error);
-    });
+exports.delete = async (req, res) => {
+  try {
+    const trackId = req.params.track_id;
+    await trackRepository.deleteById(trackId);
+
+    res.status(RequestStatus.OK).json({message: "Track deleted"});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
 };

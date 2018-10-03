@@ -7,8 +7,8 @@ exports.index = async (req, res) => {
   try {
     const albums = await albumRepository.findAll();
     res.status(RequestStatus.OK).json(albums);
-  } catch (err) {
-    res.status(RequestStatus.BAD_REQUEST).send(err);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
 
@@ -19,7 +19,7 @@ exports.show = async (req, res) => {
 
     res.status(RequestStatus.OK).json(album);
   } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).json(err);
+    res.status(RequestStatus.BAD_REQUEST).json(error);
   }
 };
 
@@ -27,16 +27,9 @@ exports.create = async (req, res) => {
   try {
     const createdAlbum = await albumRepository.create(req.body);
 
-    const res_json = {
-      "message": "Album created",
-      "data": {
-        "album": createdAlbum
-      }
-    };
-
-    res.status(RequestStatus.OK).json(res_json);
+    res.status(RequestStatus.OK).json({message: "Album created", data: createdAlbum});
   } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).send(err);
+    res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
 
@@ -45,7 +38,7 @@ exports.update = async (req, res) => {
     const albumId = req.params.album_id;
     const updatedAlbum = await albumRepository.findByIdAndUpdate(albumId, req.body);
 
-    res.status(RequestStatus.OK).json({result: updatedAlbum, msg: 'Album updated.'});
+    res.status(RequestStatus.OK).json({message: "Album updated", data: updatedAlbum});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -56,7 +49,7 @@ exports.delete = async (req, res) => {
     const albumId = req.params.album_id;
     await albumRepository.deleteById(albumId);
 
-    res.status(RequestStatus.OK).json({msg: 'Album deleted.'});
+    res.status(RequestStatus.OK).json({message: "Album deleted"});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

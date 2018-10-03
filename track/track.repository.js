@@ -2,7 +2,7 @@ var Track = require('./track.model');
 
 exports.create = async (data) => {
   const track = new Track(data);
-  await track.save();
+  return await track.save();
 };
 
 exports.findAll = async () => {
@@ -14,7 +14,7 @@ exports.findById = async (id) => {
 };
 
 exports.findByIdAndUpdate = async (id, data) => {
-  await Track.findOneAndUpdate(id, {$set: data});
+  return await Track.findOneAndUpdate(id, {$set: data});
 };
 
 exports.deleteById = async (id) => {

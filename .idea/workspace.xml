@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3892cf04-f9cb-4d9e-af15-7fa29fe86d6a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/artist/artist.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artist/artist.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artist/artist.router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/track/track.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/track/track.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/track/track.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/album/album.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/album/album.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/album/album.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/album/album.repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist/artist.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/artist/artist.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist/artist.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/artist/artist.repository.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/collection/collection.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/collection/collection.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collection/collection.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/collection/collection.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collection/collection.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/collection/collection.repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/track/track.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/track/track.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/track/track.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/track/track.repository.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/user.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.router.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,21 +25,57 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="artist.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/artist/artist.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="52" selection-start-line="52" selection-end-line="61" selection-end-column="2" />
+            <state relative-caret-position="450">
+              <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collection.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="album.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/album/album.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collection.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collection/collection.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="62" column="2" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
+            <state relative-caret-position="570">
+              <caret line="65" column="2" lean-forward="true" selection-start-line="55" selection-end-line="65" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.repository.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/user.repository.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="36" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/user/user.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-20">
+              <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/auth.router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="37" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -67,6 +101,10 @@
       <find>alb</find>
       <find>album</find>
       <find>arti</find>
+      <find>required</find>
+      <find>findByIdAndUpdate</find>
+      <find>update</find>
+      <find>.update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -75,25 +113,26 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/user/user.controller.js" />
-        <option value="$PROJECT_DIR$/user/user.router.js" />
         <option value="$PROJECT_DIR$/user/user.model.js" />
         <option value="$PROJECT_DIR$/collection/collection.model.js" />
         <option value="$PROJECT_DIR$/album/album.model.js" />
         <option value="$PROJECT_DIR$/artist/artist.model.js" />
         <option value="$PROJECT_DIR$/artist/artist.router.js" />
         <option value="$PROJECT_DIR$/track/track.model.js" />
-        <option value="$PROJECT_DIR$/track/track.controller.js" />
         <option value="$PROJECT_DIR$/track/track.router.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/album/album.repository.js" />
-        <option value="$PROJECT_DIR$/track/track.repository.js" />
         <option value="$PROJECT_DIR$/album/album.router.js" />
-        <option value="$PROJECT_DIR$/artist/artist.repository.js" />
-        <option value="$PROJECT_DIR$/album/album.controller.js" />
         <option value="$PROJECT_DIR$/collection/collection.repository.js" />
+        <option value="$PROJECT_DIR$/album/album.repository.js" />
+        <option value="$PROJECT_DIR$/artist/artist.repository.js" />
+        <option value="$PROJECT_DIR$/track/track.repository.js" />
         <option value="$PROJECT_DIR$/artist/artist.controller.js" />
+        <option value="$PROJECT_DIR$/track/track.controller.js" />
+        <option value="$PROJECT_DIR$/album/album.controller.js" />
+        <option value="$PROJECT_DIR$/user/user.repository.js" />
         <option value="$PROJECT_DIR$/collection/collection.controller.js" />
+        <option value="$PROJECT_DIR$/user/user.controller.js" />
+        <option value="$PROJECT_DIR$/user/user.router.js" />
       </list>
     </option>
   </component>
@@ -108,204 +147,14 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/node_modules/accepts/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/argparse/node_modules/underscore/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/argparse/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/array-flatten/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/async/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/asynckit/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/basic-auth-connect/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/basic-auth/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/batch/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/bcryptjs/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/bluebird/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/body-parser/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/bson/browser_build/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/bson/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/buffer-crc32/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/buffer-shims/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/bytes/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/coffee-script/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/combined-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/commander/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/component-emitter/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/compressible/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/compression/node_modules/bytes/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/compression/node_modules/negotiator/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/compression/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/node_modules/mongodb-core/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/node_modules/mongodb/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/node_modules/process-nextick-args/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-mongo/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect-timeout/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/bytes/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/cookie-signature/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/cookie/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/express-session/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/express-session/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/fresh/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/mime/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/morgan/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/qs/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/range-parser/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/raw-body/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/send/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/serve-static/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/node_modules/utils-merge/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/connect/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/content-disposition/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/content-type/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookie-parser/node_modules/cookie-signature/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookie-parser/node_modules/cookie/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookie-parser/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookie-signature/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookie/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/cookiejar/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/core-util-is/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/crc/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/csurf/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/delayed-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/depd/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/destroy/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/doctrine/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/ee-first/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/encodeurl/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/errorhandler/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/es6-promise/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/escape-html/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/esprima/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/esutils/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/etag/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/express-session/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/express/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/extend/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/finalhandler/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/form-data/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/formidable/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/forwarded/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/fresh/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/http-errors/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/iconv-lite/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/inherits/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/ipaddr.js/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/isarray/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/js-yaml/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/kareem/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/keypress/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/lodash.get/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/lodash/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/media-typer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/merge-descriptors/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/method-override/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/methods/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mime-db/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mime-types/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mime/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mkdirp/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb-core/node_modules/bson/browser_build/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb-core/node_modules/bson/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb-core/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb-core/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongodb/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose-legacy-pluralize/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/aggregate/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/express/connection-sharing/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/geospatial/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/lean/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/mapreduce/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/promises/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/querybuilder/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/examples/replicasets/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mongoose/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/morgan/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mpath/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mquery/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mquery/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/mquery/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/ms/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/multiparty/node_modules/isarray/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/multiparty/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/multiparty/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/multiparty/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/negotiator/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/on-finished/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/on-headers/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/parseurl/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/passport-local/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/passport-strategy/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/passport/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/path-to-regexp/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/pause/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/process-nextick-args/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/proxy-addr/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/qs/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/random-bytes/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/range-parser/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/raw-body/node_modules/depd/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/raw-body/node_modules/http-errors/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/raw-body/node_modules/setprototypeof/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/raw-body/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/regexp-clone/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/require_optional/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/require_optional/test/nestedTest/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/resolve-from/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/response-time/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/saslprep/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/semver/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/send/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/serve-index/node_modules/negotiator/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/serve-index/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/serve-static/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/setprototypeof/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/sliced/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/static-favicon/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/statuses/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/stream-counter/node_modules/isarray/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/stream-counter/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/stream-counter/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/stream-counter/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/superagent/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/superagent/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/supertest/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/async/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/cookie-signature/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/cookie/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/express/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/fresh/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/merge-descriptors/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/methods/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/mime/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/range-parser/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/node_modules/send/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/swagger-express/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/type-is/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/uid-safe/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/uid2/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/underscore.string/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/underscore/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/unpipe/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/util-deprecate/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/utils-merge/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/vary/package.json" />
-      <path value="$PROJECT_DIR$/node_modules/vhost/package.json" />
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="707" />
-    <option name="y" value="24" />
-    <option name="width" value="659" />
-    <option name="height" value="744" />
+    <option name="x" value="34" />
+    <option name="y" value="-4" />
+    <option name="width" value="657" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -313,7 +162,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -350,6 +198,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,11 +209,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user" />
       <recent name="$PROJECT_DIR$/collection" />
       <recent name="$PROJECT_DIR$/artist" />
       <recent name="$PROJECT_DIR$/track" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/album" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -389,12 +238,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538329538685</updated>
-      <workItem from="1538329545065" duration="17864000" />
+      <workItem from="1538329545065" duration="18803000" />
+      <workItem from="1538518523433" duration="9186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17864000" />
+    <option name="totallyTimeSpent" value="27989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1317" height="772" extended-state="6" />
@@ -402,19 +252,19 @@
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24981017" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298193" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
@@ -425,109 +275,23 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/examples/schema/storing-schemas-as-json/index.js">
+    <entry file="file://$PROJECT_DIR$/artist/artist.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
+        <state relative-caret-position="780">
+          <caret line="52" selection-start-line="52" selection-end-line="61" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/user.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="46" column="45" lean-forward="true" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/auth.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collection/collection.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/track/track.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/track/track.router.js">
+    <entry file="file://$PROJECT_DIR$/artist/artist.model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/track/track.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/track/track.repository.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/album/album.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/album/album.repository.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/album/album.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="38" column="49" lean-forward="true" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -545,38 +309,210 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/artist/artist.model.js">
+    <entry file="file://$PROJECT_DIR$/collection/collection.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        <state relative-caret-position="210">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/album/album.controller.js">
+    <entry file="file://$PROJECT_DIR$/user/auth.controller.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/auth.router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="53" selection-start-line="53" selection-end-line="62" selection-end-column="2" />
+        <state relative-caret-position="60">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/examples/schema/storing-schemas-as-json/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/track/track.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/album/album.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="38" column="49" lean-forward="true" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/artist/artist.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/auth.controller.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collection/collection.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/collection/collection.repository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="240">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collection/collection.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-21" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/track/track.repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/artist/artist.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/artist/artist.repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/album/album.repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/album/album.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/track/track.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-201">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/track/track.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/artist/artist.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="52" selection-start-line="52" selection-end-line="61" selection-end-column="2" />
+        <state relative-caret-position="450">
+          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/album/album.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/auth.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="37" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/collection/collection.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="2" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
+        <state relative-caret-position="570">
+          <caret line="65" column="2" lean-forward="true" selection-start-line="55" selection-end-line="65" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20">
+          <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
         </state>
       </provider>
     </entry>

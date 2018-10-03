@@ -2,7 +2,7 @@ var Album = require('./album.model');
 
 exports.create = async (data) => {
   const album = new Album(data);
-  await album.save();
+  return await album.save();
 };
 
 exports.findAll = async () => {
@@ -14,7 +14,7 @@ exports.findById = async (id) => {
 };
 
 exports.findByIdAndUpdate = async (id, data) => {
-  await Album.findOneAndUpdate(id, {$set: data});
+  return await Album.findOneAndUpdate(id, {$set: data});
 };
 
 exports.deleteById = async (id) => {
