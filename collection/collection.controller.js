@@ -25,17 +25,12 @@ exports.show = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    const loggedUser = req.user;
-    req.body._owner = loggedUser._id;
+    const loggedUserId = req.user._id;
+    req.body._owner = loggedUserId;
 
     const createdCollection = await collectionRepository.create(req.body);
 
-    var user_collections = loggedUser._collections;
-    user_collections.push(createdCollection._id);
-    loggedUser._collections = user_collections;
-
-
-    await userRepository.findByIdAndUpdate(loggedUser._id, loggedUser);
+    await userRepository.addCollection(loggedUserId, createdCollection._id);
 
     res.status(RequestStatus.CREATED_STATUS).json({message: "Collection created", data: createdCollection});
   } catch (error) {
@@ -44,6 +39,7 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
+  // TODO Não permitir modificar o campo owner ?
   try {
     const collectionId = req.params.collection_id;
     const updatedCollection = await collectionRepository.findByIdAndUpdate(collectionId, req.body);
@@ -57,7 +53,9 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const collectionId = req.params.collection_id;
-    await collectionRepository.deleteById(collectionId);
+    const collectionDeleted = await collectionRepository.deleteById(collectionId);
+
+    await userRepository.removeCollection(collectionDeleted._owner, collectionId);
 
     res.status(RequestStatus.OK).json({message: "Collection deleted"});
   } catch (error) {
@@ -70,21 +68,22 @@ exports.addAlbum = async (req, res) => {
     const collectionId = req.params.collection_id;
     const albumId = req.body.album_id;
 
-    const collection = await collectionRepository.findById(collectionId);
+    await collectionRepository.addAlbum(collectionId, albumId);
 
-    const parsedItems = collection._items.map((item) => {
-      return item.toString() === albumId.toString();
-    });
+    res.status(RequestStatus.OK).json({message: "Collection updated"});
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
 
-    console.log("aaaaaaaaaaaaaaaaa", parsedItems);
+exports.removeAlbum = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    const albumId = req.params.album_id;
 
-    if (!collection._items.includes(albumId)) {
-      const updatedCollection = await collectionRepository.addAlbum(collection, albumId);
+    await collectionRepository.removeAlbum(collectionId, albumId);
 
-      res.status(RequestStatus.OK).json({message: "Collection updated", data: updatedCollection});
-    } else {
-      res.status(RequestStatus.CONFLICT).json({message: "Album already added"});
-    }
+    res.status(RequestStatus.OK).json({message: "Collection updated"});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

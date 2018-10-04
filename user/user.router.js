@@ -3,7 +3,6 @@ var router = express.Router();
 
 var userController = require('./user.controller');
 
-
 router.get('/', userController.index);
 
 router.get('/:user_id', userController.show);

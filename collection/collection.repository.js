@@ -18,17 +18,17 @@ exports.findByIdAndUpdate = async (id, data) => {
 };
 
 exports.deleteById = async (id) => {
-  await Collection.findOneAndDelete(id);
+  return await Collection.findOneAndDelete(id);
 };
 
 exports.findOne = async (data) => {
   return await Collection.findOne(data);
 };
 
-exports.addAlbum = async (collection, albumId) => {
-  var items = collection._items;
-  items.push(albumId);
-  collection._items = items;
-  
-  return await collection.save();
+exports.addAlbum = async (collectionId, albumId) => {
+  return await Collection.findOneAndUpdate(collectionId, {$addToSet: {_items: albumId}});
+};
+
+exports.removeAlbum = async (collectionId, albumId) => {
+  return await Collection.findOneAndUpdate(collectionId, {$pull: {_items: albumId}});
 };

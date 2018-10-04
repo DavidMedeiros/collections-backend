@@ -42,4 +42,6 @@ router.put('/:collection_id', collectionController.update);
 
 router.delete('/:collection_id', collectionController.delete);
 
+router.delete('/:collection_id/album/:album_id', collectionController.removeAlbum);
+
 module.exports = router;

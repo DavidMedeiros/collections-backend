@@ -24,3 +24,14 @@ exports.deleteById = async (id) => {
 exports.findOne = async (data) => {
   return await User.findOne(data);
 };
+
+exports.addCollection = async (userId, collectionId) => {
+  return await User.findOneAndUpdate(userId, {$addToSet: {_collections: collectionId}});
+};
+
+exports.removeCollection = async (userId, collectionId) => {
+  console.log(userId);
+  console.log(collectionId);
+  return await User.findOneAndUpdate(userId, {$pull: {_collections: collectionId}});
+};
+
