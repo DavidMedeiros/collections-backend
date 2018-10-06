@@ -90,11 +90,84 @@ exports.followCollection = async (req, res) => {
     const collectionUpdated = await collectionRepository.addFollower(collectionId, userId);
 
     if (collectionUpdated.n > 0) {
-      await userRepository.addFollowingCollection(userId, collectionId);
+      if (collectionUpdated.nModified) {
+        await userRepository.addFollowingCollection(userId, collectionId);
 
-      res.status(RequestStatus.OK).json({message: "Collection followed"});
+        res.status(RequestStatus.OK).json({message: "Collection followed"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already follow this collection"});
+      }
     } else {
       res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.unfollowCollection = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    const userId = req.user._id;
+
+    const collectionUpdated = await collectionRepository.removeFollower(collectionId, userId);
+
+    if (collectionUpdated.n > 0) {
+      if (collectionUpdated.nModified) {
+        await userRepository.removeFollowingCollection(userId, collectionId);
+
+        res.status(RequestStatus.OK).json({message: "Collection unfollowed"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already follow this collection"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.followUser = async (req, res) => {
+  try {
+    const loggedUser = req.user._id;
+    const userToFollowId = req.body.user_id;
+
+    const userToFollowUpdated = await userRepository.addFollower(userToFollowId, loggedUser);
+
+    if (userToFollowUpdated.n > 0) {
+      if (userToFollowUpdated.nModified) {
+        await userRepository.addFollowingUser(loggedUser, userToFollowId);
+
+        res.status(RequestStatus.OK).json({message: "User followed"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already follow this user"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.unfollowUser = async (req, res) => {
+  try {
+    const loggedUser = req.user._id;
+    const userToUnfollowId = req.params.user_id;
+
+    const userToUnfollowUpdated = await userRepository.removeFollower(userToUnfollowId, loggedUser);
+
+    if (userToUnfollowUpdated.n > 0) {
+      if (userToUnfollowUpdated.nModified) {
+        await userRepository.removeFollowingUser(loggedUser, userToUnfollowId);
+
+        res.status(RequestStatus.OK).json({message: "User unfollowed"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already unfollowed this user"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
     }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
