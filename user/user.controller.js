@@ -26,7 +26,6 @@ exports.show = async (req, res) => {
 };
 
 exports.create = (req, res) => {
-  // TODO verificação de senhas iguais
   var user = new User(req.body);
   user.name = req.body.username;
 
@@ -70,9 +69,43 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const userId = req.params.user_id;
+
+    const user = await userRepository.findById(userId);
     const userDeleted = await userRepository.deleteById(userId);
 
     if (userDeleted.n > 0) {
+      // Delete all collections of user
+      user._collections.forEach(async function (collectionId){
+        const collection = await collectionRepository.findById(collectionId);
+        const collectionDeleted = await collectionRepository.deleteById(collectionId);
+
+        // For each user that follow this deleted collection, remove its from his following collections list
+        if (collectionDeleted.n > 0) {
+          collection._followers.forEach(async function (followerId) {
+             await userRepository.removeFollowingCollection(followerId, collectionId);
+          });
+        }
+      });
+
+      // For each user that follow this deleted user, remove the deleted user from his following users lists
+      user._followers.forEach(async function (followerId) {
+        await userRepository.removeFollowingUser(followerId, userId);
+      });
+
+      // For each user that is followed by this deleted user, remove the deleted user from his followers list
+      user._following_users.forEach(async function (followingUserId) {
+        await userRepository.removeFollower(followingUserId, userId);
+      });
+
+      // For each collection that is followed by this deleted user, remove him from from this collection followers list
+      user._following_collections.forEach(async function (followingCollectionId) {
+        await collectionRepository.removeFollower(followingCollectionId, userId);
+      });
+
+      if (req.user._id === userId) {
+        req.logout();
+      }
+
       res.status(RequestStatus.OK).json({message: "User deleted"});
     } else {
       res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});

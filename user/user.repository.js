@@ -18,7 +18,7 @@ exports.findByIdAndUpdate = async (userId, data) => {
 };
 
 exports.deleteById = async (userId) => {
-  await User.deleteOne({ _id: userId });
+  return await User.deleteOne({ _id: userId });
 };
 
 exports.findOne = async (data) => {
