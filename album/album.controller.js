@@ -1,5 +1,6 @@
 const albumRepository = require("./album.repository");
 const trackRepository = require("../track/track.repository");
+const artistRepository = require("../artist/artist.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 
@@ -25,9 +26,15 @@ exports.show = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    const createdAlbum = await albumRepository.create(req.body);
+    const artistId = req.body.artist_id;
+    const artist = await artistRepository.findById(artistId);
 
-    res.status(RequestStatus.CREATED_STATUS).json({message: "Album created", data: createdAlbum});
+    if (artist) {
+      const createdAlbum = await albumRepository.create(req.body);
+      res.status(RequestStatus.CREATED_STATUS).json({message: "Album created", data: createdAlbum});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).send("Make sure that artist_id is correct");
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

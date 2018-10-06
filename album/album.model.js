@@ -14,13 +14,10 @@ var AlbumSchema = new Schema({
     type: String,
     required: true
   },
-  _artist_id: {
+  artist_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Artist',
     required: true
-  },
-  _artist_name: {
-    type: String
   },
   genres: {
     type: [],

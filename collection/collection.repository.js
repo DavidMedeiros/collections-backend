@@ -18,7 +18,7 @@ exports.findByIdAndUpdate = async (id, data) => {
 };
 
 exports.deleteById = async (id) => {
-  return await Collection.findOneAndDelete(id);
+  return await Collection.deleteOne({ _id: id });
 };
 
 exports.findOne = async (data) => {
@@ -31,4 +31,12 @@ exports.addAlbum = async (collectionId, albumId) => {
 
 exports.removeAlbum = async (collectionId, albumId) => {
   return await Collection.findOneAndUpdate(collectionId, {$pull: {_items: albumId}});
+};
+
+exports.addFollower = async (collectionId, followerId) => {
+  return await Collection.updateOne({ _id: collectionId }, {$addToSet: {_followers: followerId}});
+};
+
+exports.removeFollower = async (collectionId, followerId) => {
+  return await Collection.updateOne({ _id: collectionId }, {$pull: {_followers: followerId}});
 };

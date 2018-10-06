@@ -54,6 +54,7 @@ exports.delete = async (req, res) => {
   try {
     const collectionId = req.params.collection_id;
     const collectionDeleted = await collectionRepository.deleteById(collectionId);
+    console.log('deletec collection', collectionDeleted);
 
     await userRepository.removeCollection(collectionDeleted._owner, collectionId);
 

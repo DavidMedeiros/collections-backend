@@ -1,9 +1,9 @@
 var User = require('./user.model');
 const userRepository = require("../user/user.repository");
+const collectionRepository = require("../collection/collection.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 var RequestMsgs = require('../constants/requestMsgs');
-
 
 exports.index = async (req, res) => {
   try {
@@ -53,7 +53,15 @@ exports.update = async (req, res) => {
     const userId = req.params.user_id;
     const updatedUser = await userRepository.findByIdAndUpdate(userId, req.body);
 
-    res.status(RequestStatus.OK).json({message: "User updated", data: updatedUser});
+    if (updatedUser.n > 0) {
+      if(updatedUser.nModified) {
+        res.status(RequestStatus.OK).json({message: "User updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "User not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -62,11 +70,33 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const userId = req.params.user_id;
-    await userRepository.deleteById(userId);
+    const userDeleted = await userRepository.deleteById(userId);
 
-    res.status(RequestStatus.OK).json({message: "User deleted"});
+    if (userDeleted.n > 0) {
+      res.status(RequestStatus.OK).json({message: "User deleted"});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
 
+exports.followCollection = async (req, res) => {
+  try {
+    const collectionId = req.body.collection_id;
+    const userId = req.user._id;
+
+    const collectionUpdated = await collectionRepository.addFollower(collectionId, userId);
+
+    if (collectionUpdated.n > 0) {
+      await userRepository.addFollowingCollection(userId, collectionId);
+
+      res.status(RequestStatus.OK).json({message: "Collection followed"});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
