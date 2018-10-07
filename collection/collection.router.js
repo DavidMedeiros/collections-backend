@@ -40,4 +40,8 @@ router.put('/:collection_id', collectionController.update);
 
 router.delete('/:collection_id', collectionController.delete);
 
+router.post('/:collection_id/album', collectionController.addAlbum);
+
+router.delete('/:collection_id/album/:album_id', collectionController.removeAlbum);
+
 module.exports = router;
