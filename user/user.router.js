@@ -25,4 +25,11 @@ router.post('/:user_id/like/collection', userController.likeCollection);
 
 router.delete('/:user_id/dislike/collection/:collection_id', userController.dislikeCollection);
 
+//user/:user_id/is_following?collection_id=id
+//user/:user_id/is_following?user_id=id
+router.get('/:user_id/is_following', userController.isFollowing);
+
+//user/:user_id/liked?collection_id=id
+router.get('/:user_id/liked', userController.likedCollection);
+
 module.exports = router;

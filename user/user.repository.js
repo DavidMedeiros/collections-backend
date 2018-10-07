@@ -64,3 +64,15 @@ exports.addLikedCollection = async (userId, collectionId) => {
 exports.removeLikedCollection = async (userId, collectionId) => {
   return await User.updateOne({ _id: userId }, {$pull: {_liked_collections: collectionId}});
 };
+
+exports.isFollowingCollection = async (userId, collectionId) => {
+  const user = await User.findOne({ _id: userId });
+
+  return (user._following_collections.filter(function(e) {return e.toString() === collectionId.toString(); }).length > 0);
+};
+
+exports.isFollowingUser = async (userId, userCheck) => {
+  const user = await User.findOne({ _id: userId });
+
+  return (user._following_users.filter(function(e) {return e.toString() === userCheck.toString(); }).length > 0);
+};

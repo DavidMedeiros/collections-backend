@@ -257,3 +257,35 @@ exports.dislikeCollection = async (req, res) => {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
+
+exports.isFollowing = async (req, res) => {
+  try {
+    let userId = req.params.user_id;
+    let collectionId = req.query.collection_id;
+    let userToCheck = req.query.user_id;
+
+    if (collectionId) {
+      const isFollowingCollection = await userRepository.isFollowingCollection(userId, collectionId);
+      res.status(RequestStatus.OK).json({is_following_collection: isFollowingCollection});
+    } else if (userToCheck) {
+      const isFollowingUser = await userRepository.isFollowingUser(userId, userToCheck);
+      res.status(RequestStatus.OK).json({is_following_user: isFollowingUser});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.likedCollection = async (req, res) => {
+  try {
+    let userId = req.params.user_id;
+    let collectionId = req.query.collection_id;
+
+    if (collectionId) {
+      const likedCollection = await collectionRepository.likedCollection(collectionId, userId);
+      res.status(RequestStatus.OK).json({liked_collection: likedCollection});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};

@@ -53,3 +53,9 @@ exports.addLike = async (collectionId, userId) => {
 exports.removeLike = async (collectionId, userId) => {
   return await Collection.updateOne({ _id: collectionId }, {$pull: {_likes: userId}});
 };
+
+exports.likedCollection = async (collectionId, userId) => {
+  const collection = await Collection.findOne({ _id: collectionId });
+  console.log(collection);
+  return (collection._likes.filter(function(e) {return e.toString() === userId.toString(); }).length > 0);
+};
