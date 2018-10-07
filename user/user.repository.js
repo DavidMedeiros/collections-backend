@@ -56,3 +56,11 @@ exports.addFollowingUser = async (userId, following) => {
 exports.removeFollowingUser = async (userId, following) => {
   return await User.updateOne({ _id: userId }, {$pull: {_following_users: following}});
 };
+
+exports.addLikedCollection = async (userId, collectionId) => {
+  return await User.updateOne({ _id: userId }, {$addToSet: {_liked_collections: collectionId}});
+};
+
+exports.removeLikedCollection = async (userId, collectionId) => {
+  return await User.updateOne({ _id: userId }, {$pull: {_liked_collections: collectionId}});
+};

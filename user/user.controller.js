@@ -102,6 +102,11 @@ exports.delete = async (req, res) => {
         await collectionRepository.removeFollower(followingCollectionId, userId);
       });
 
+      // For each collection that is liked by this deleted user, remove him from from this collection likes list
+      user._liked_collections.forEach(async function (likedCollectionId) {
+        await collectionRepository.removeLike(likedCollectionId, userId);
+      });
+
       if (req.user._id === userId) {
         req.logout();
       }
@@ -201,6 +206,52 @@ exports.unfollowUser = async (req, res) => {
       }
     } else {
       res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.likeCollection = async (req, res) => {
+  try {
+    const collectionId = req.body.collection_id;
+    const userId = req.params.user_id;
+
+    const collectionUpdated = await collectionRepository.addLike(collectionId, userId);
+
+    if (collectionUpdated.n > 0) {
+      if (collectionUpdated.nModified) {
+        await userRepository.addLikedCollection(userId, collectionId);
+
+        res.status(RequestStatus.OK).json({message: "Collection liked"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already like this collection"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).send(error);
+  }
+};
+
+exports.dislikeCollection = async (req, res) => {
+  try {
+    const collectionId = req.params.collection_id;
+    const userId = req.params.user_id;
+
+    const collectionUpdated = await collectionRepository.removeLike(collectionId, userId);
+
+    if (collectionUpdated.n > 0) {
+      if (collectionUpdated.nModified) {
+        await userRepository.removeLikedCollection(userId, collectionId);
+
+        res.status(RequestStatus.OK).json({message: "Collection disliked"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Already disliked this collection"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
     }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);

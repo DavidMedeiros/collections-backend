@@ -66,11 +66,16 @@ exports.delete = async (req, res) => {
 
     if (collectionDeleted.n > 0) {
       // Delete collection from owner collections list
-      await userRepository.removeCollection(collectionDeleted._owner, collectionId);
+      await userRepository.removeCollection(collection._owner, collectionId);
 
       // Remove collection from users that follow its
       collection._followers.forEach(async function (followerId) {
-        await userRepository.removeFollowingCollection(followerId);
+        await userRepository.removeFollowingCollection(collection._owner, followerId);
+      });
+
+      // Remove likes from users that liked its
+      collection._likes.forEach(async function (userId) {
+        await userRepository.removeLikedCollection(collection._owner, userId);
       });
 
       res.status(RequestStatus.OK).json({message: "Collection deleted"});

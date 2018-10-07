@@ -21,4 +21,8 @@ router.post('/:user_id/follow/user', userController.followUser);
 
 router.delete('/:user_id/unfollow/user/:user_id', userController.unfollowUser);
 
+router.post('/:user_id/like/collection', userController.likeCollection);
+
+router.delete('/:user_id/dislike/collection/:collection_id', userController.dislikeCollection);
+
 module.exports = router;

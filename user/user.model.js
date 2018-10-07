@@ -82,6 +82,15 @@ var UserSchema = new Schema({
       }
     ],
     default: []
+  },
+  _liked_collections: {
+	  type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Collections'
+      }
+    ],
+    default: []
   }
 });
 

@@ -45,3 +45,11 @@ exports.addFollower = async (collectionId, followerId) => {
 exports.removeFollower = async (collectionId, followerId) => {
   return await Collection.updateOne({ _id: collectionId }, {$pull: {_followers: followerId}});
 };
+
+exports.addLike = async (collectionId, userId) => {
+  return await Collection.updateOne({ _id: collectionId }, {$addToSet: {_likes: userId}});
+};
+
+exports.removeLike = async (collectionId, userId) => {
+  return await Collection.updateOne({ _id: collectionId }, {$pull: {_likes: userId}});
+};
