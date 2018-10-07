@@ -29,11 +29,15 @@ exports.create = async (req, res) => {
     const artistId = req.body.artist_id;
     const artist = await artistRepository.findById(artistId);
 
-    if (artist) {
+    if (artist) { // TODO test this if clause
       const createdAlbum = await albumRepository.create(req.body);
+
+      // add recent created album to artist albums
+      await artistRepository.addAlbum(createdAlbum._id);
+
       res.status(RequestStatus.CREATED_STATUS).json({message: "Album created", data: createdAlbum});
     } else {
-      res.status(RequestStatus.BAD_REQUEST).send("Make sure that artist_id is correct");
+      res.status(RequestStatus.BAD_REQUEST).send("Artist not founded");
     }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
@@ -45,7 +49,15 @@ exports.update = async (req, res) => {
     const albumId = req.params.album_id;
     const updatedAlbum = await albumRepository.findByIdAndUpdate(albumId, req.body);
 
-    res.status(RequestStatus.OK).json({message: "Album updated", data: updatedAlbum});
+    if (updatedAlbum.n > 0) {
+      if(updatedAlbum.nModified) {
+        res.status(RequestStatus.OK).json({message: "Artist updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Artist not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Artist not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -54,47 +66,21 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const albumId = req.params.album_id;
-    await albumRepository.deleteById(albumId);
-
-    res.status(RequestStatus.OK).json({message: "Album deleted"});
-  } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).send(error);
-  }
-};
-
-exports.addTrack = async function(req, res) {
-  try {
-    const albumId = req.params.album_id;
     const album = await albumRepository.findById(albumId);
+    const albumDeleted = await albumRepository.deleteById(albumId);
 
-    const trackId = req.body.track_id;
-    const track = await trackRepository.findById(trackId);
+    if (albumDeleted.n > 0) {
+      // delete tracks of album
+      album._tracks.forEach(async function (trackId) {
+        await trackRepository.deleteById(trackId);
+      });
 
-    album._tracks.push(trackId);
-    await albumRepository.findByIdAndUpdate(albumId, album);
+      // delete album from artist albums list
+      await artistRepository.removeAlbum(album._owner, albumId);
 
-    track.album_id = album._id;
-    await trackRepository.findByIdAndUpdate(trackId, track);
-  } catch (error) {
-    res.status(RequestStatus.BAD_REQUEST).send(error);
-  }
-};
-
-exports.removeTrack = async function(req, res) {
-  try {
-    const albumId = req.params.album_id;
-    const trackId = req.params.track_id;
-
-    const album = await albumRepository.findById(albumId);
-    const track = await trackRepository.findById(trackId);
-
-    const index = album._tracks.indexOf(trackId);
-    if (index > -1) {
-      album._tracks.splice(index, 1);
-      track.album_id = null;
-
-      await albumRepository.findByIdAndUpdate(albumId, album);
-      await trackRepository.findByIdAndUpdate(trackId, track);
+      res.status(RequestStatus.OK).json({message: "Album deleted"});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Album not founded"});
     }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);

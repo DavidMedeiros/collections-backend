@@ -1,4 +1,6 @@
 const artistRepository = require("./artist.repository");
+const albumRepository = require("../album/album.repository");
+const trackRepository = require("../track/track.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 
@@ -37,7 +39,15 @@ exports.update = async (req, res) => {
     const artistId = req.params.artist_id;
     const updatedArtist = await artistRepository.findByIdAndUpdate(artistId, req.body);
 
-    res.status(RequestStatus.OK).json({message: "Artist updated", data: updatedArtist});
+    if (updatedArtist.n > 0) {
+      if(updatedArtist.nModified) {
+        res.status(RequestStatus.OK).json({message: "Artist updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Artist not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Artist not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -46,9 +56,25 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const artistId = req.params.artist_id;
-    await artistRepository.deleteById(artistId);
+    const artist = await artistRepository.findById(artistId);
 
-    res.status(RequestStatus.OK).json({message: "Artist deleted"});
+    const artistDeleted = await artistRepository.deleteById(artistId);
+
+    if (artistDeleted.n > 0) {
+      // delete artist albums and its tracks
+      artist._albums.forEach(async function (albumId) {
+        const album = await albumRepository.findById(albumId);
+        await albumRepository.deleteById(albumId);
+
+        album._tracks.forEach(async function (trackId) {
+          await trackRepository.deleteById(trackId);
+        });
+      });
+
+      res.status(RequestStatus.OK).json({message: "Artist deleted"});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Artist not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

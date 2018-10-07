@@ -13,12 +13,14 @@ exports.findById = async (id) => {
   return await Track.findById(id);
 };
 
-exports.findByIdAndUpdate = async (id, data) => {
-  return await Track.findOneAndUpdate(id, {$set: data});
+exports.findByIdAndUpdate = async (trackId, data) => {
+  delete data.album_id;
+
+  return await Track.updateOne({ _id: trackId }, { $set: data });
 };
 
-exports.deleteById = async (id) => {
-  await Track.findOneAndDelete(id);
+exports.deleteById = async (trackId) => {
+  return await Track.deleteOne({ _id: trackId });
 };
 
 exports.findOne = async (data) => {

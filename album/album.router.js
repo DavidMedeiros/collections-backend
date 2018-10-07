@@ -38,10 +38,6 @@ router.post('/', albumController.create);
 
 router.put('/:album_id', albumController.update);
 
-router.put('/:album_id/track', albumController.addTrack);
-
 router.delete('/:album_id', albumController.delete);
-
-router.delete('/:album_id/track/:track_id', albumController.delete);
 
 module.exports = router;

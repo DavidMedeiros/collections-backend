@@ -118,7 +118,7 @@ exports.delete = async (req, res) => {
 exports.followCollection = async (req, res) => {
   try {
     const collectionId = req.body.collection_id;
-    const userId = req.user._id;
+    const userId = req.params.user_id;
 
     const collectionUpdated = await collectionRepository.addFollower(collectionId, userId);
 
@@ -141,7 +141,7 @@ exports.followCollection = async (req, res) => {
 exports.unfollowCollection = async (req, res) => {
   try {
     const collectionId = req.params.collection_id;
-    const userId = req.user._id;
+    const userId = req.params.user_id;
 
     const collectionUpdated = await collectionRepository.removeFollower(collectionId, userId);
 
@@ -163,14 +163,14 @@ exports.unfollowCollection = async (req, res) => {
 
 exports.followUser = async (req, res) => {
   try {
-    const loggedUser = req.user._id;
+    const user = req.params.user_id;
     const userToFollowId = req.body.user_id;
 
-    const userToFollowUpdated = await userRepository.addFollower(userToFollowId, loggedUser);
+    const userToFollowUpdated = await userRepository.addFollower(userToFollowId, user);
 
     if (userToFollowUpdated.n > 0) {
       if (userToFollowUpdated.nModified) {
-        await userRepository.addFollowingUser(loggedUser, userToFollowId);
+        await userRepository.addFollowingUser(user, userToFollowId);
 
         res.status(RequestStatus.OK).json({message: "User followed"});
       } else {
@@ -186,14 +186,14 @@ exports.followUser = async (req, res) => {
 
 exports.unfollowUser = async (req, res) => {
   try {
-    const loggedUser = req.user._id;
+    const user = req.params.user_id;
     const userToUnfollowId = req.params.user_id;
 
-    const userToUnfollowUpdated = await userRepository.removeFollower(userToUnfollowId, loggedUser);
+    const userToUnfollowUpdated = await userRepository.removeFollower(userToUnfollowId, user);
 
     if (userToUnfollowUpdated.n > 0) {
       if (userToUnfollowUpdated.nModified) {
-        await userRepository.removeFollowingUser(loggedUser, userToUnfollowId);
+        await userRepository.removeFollowingUser(user, userToUnfollowId);
 
         res.status(RequestStatus.OK).json({message: "User unfollowed"});
       } else {

@@ -13,12 +13,12 @@ router.put('/:user_id', userController.update);
 
 router.delete('/:user_id', userController.delete);
 
-router.post('/follow/collection', userController.followCollection);
+router.post('/:user_id/follow/collection', userController.followCollection);
 
-router.delete('/unfollow/collection/:collection_id', userController.unfollowCollection);
+router.delete('/:user_id/unfollow/collection/:collection_id', userController.unfollowCollection);
 
-router.post('/follow/user', userController.followUser);
+router.post('/:user_id/follow/user', userController.followUser);
 
-router.delete('/unfollow/user/:user_id', userController.unfollowUser);
+router.delete('/:user_id/unfollow/user/:user_id', userController.unfollowUser);
 
 module.exports = router;

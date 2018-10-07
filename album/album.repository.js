@@ -13,14 +13,25 @@ exports.findById = async (id) => {
   return await Album.findById(id);
 };
 
-exports.findByIdAndUpdate = async (id, data) => {
-  return await Album.findOneAndUpdate(id, {$set: data});
+exports.findByIdAndUpdate = async (id, albumId) => {
+  delete data.artist_id;
+  delete data._tracks;
+
+  return await Album.updateOne({ _id: albumId }, { $set: data });
 };
 
-exports.deleteById = async (id) => {
-  await Album.findOneAndDelete(id);
+exports.deleteById = async (albumId) => {
+  return await Album.deleteOne({ _id: albumId });
 };
 
 exports.findOne = async (data) => {
   return await Album.findOne(data);
+};
+
+exports.addTrack = async (albumId, trackId) => {
+  return await Artist.updateOne({ _id: albumId }, { $addToSet: { _tracks: trackId } });
+};
+
+exports.removeTrack = async (albumId, trackId) => {
+  return await Artist.updateOne({ _id: albumId }, { $pull: { _tracks: trackId } });
 };

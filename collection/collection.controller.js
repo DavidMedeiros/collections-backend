@@ -39,12 +39,19 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  // TODO Não permitir modificar o campo owner ?
   try {
     const collectionId = req.params.collection_id;
     const updatedCollection = await collectionRepository.findByIdAndUpdate(collectionId, req.body);
 
-    res.status(RequestStatus.OK).json({message: "Collection updated", data: updatedCollection});
+    if (updatedCollection.n > 0) {
+      if(updatedCollection.nModified) {
+        res.status(RequestStatus.OK).json({message: "Collection updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Collection not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).json(error);
   }
@@ -53,12 +60,23 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const collectionId = req.params.collection_id;
+    const collection = await collectionRepository.findById(collectionId);
+
     const collectionDeleted = await collectionRepository.deleteById(collectionId);
-    console.log('deletec collection', collectionDeleted);
 
-    await userRepository.removeCollection(collectionDeleted._owner, collectionId);
+    if (collectionDeleted.n > 0) {
+      // Delete collection from owner collections list
+      await userRepository.removeCollection(collectionDeleted._owner, collectionId);
 
-    res.status(RequestStatus.OK).json({message: "Collection deleted"});
+      // Remove collection from users that follow its
+      collection._followers.forEach(async function (followerId) {
+        await userRepository.removeFollowingCollection(followerId);
+      });
+
+      res.status(RequestStatus.OK).json({message: "Collection deleted"});
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
@@ -69,9 +87,17 @@ exports.addAlbum = async (req, res) => {
     const collectionId = req.params.collection_id;
     const albumId = req.body.album_id;
 
-    await collectionRepository.addAlbum(collectionId, albumId);
+    const updatedCollection = await collectionRepository.addAlbum(collectionId, albumId);
 
-    res.status(RequestStatus.OK).json({message: "Collection updated"});
+    if (updatedCollection.n > 0) {
+      if(updatedCollection.nModified) {
+        res.status(RequestStatus.OK).json({message: "Collection updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Collection not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
@@ -82,9 +108,17 @@ exports.removeAlbum = async (req, res) => {
     const collectionId = req.params.collection_id;
     const albumId = req.params.album_id;
 
-    await collectionRepository.removeAlbum(collectionId, albumId);
+    const updatedCollection = await collectionRepository.removeAlbum(collectionId, albumId);
 
-    res.status(RequestStatus.OK).json({message: "Collection updated"});
+    if (updatedCollection.n > 0) {
+      if(updatedCollection.nModified) {
+        res.status(RequestStatus.OK).json({message: "Collection updated"});
+      } else {
+        res.status(RequestStatus.OK).json({message: "Collection not updated"});
+      }
+    } else {
+      res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});
+    }
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

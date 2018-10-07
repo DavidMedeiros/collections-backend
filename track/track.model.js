@@ -12,7 +12,8 @@ var TrackSchema = new Schema({
   },
   album_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Album'
+    ref: 'Album',
+    required: true
   }
 });
 
