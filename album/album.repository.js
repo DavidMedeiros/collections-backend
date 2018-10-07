@@ -29,9 +29,9 @@ exports.findOne = async (data) => {
 };
 
 exports.addTrack = async (albumId, trackId) => {
-  return await Artist.updateOne({ _id: albumId }, { $addToSet: { _tracks: trackId } });
+  return await Album.updateOne({ _id: albumId }, { $addToSet: { _tracks: trackId } });
 };
 
 exports.removeTrack = async (albumId, trackId) => {
-  return await Artist.updateOne({ _id: albumId }, { $pull: { _tracks: trackId } });
+  return await Album.updateOne({ _id: albumId }, { $pull: { _tracks: trackId } });
 };

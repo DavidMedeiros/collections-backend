@@ -32,16 +32,12 @@ exports.create = async (req, res) => {
       const createdTrack = await trackRepository.create(req.body);
 
       // add recent created track to album tracks list
-      await albumRepository.addTrack(createdTrack._id);
+      await albumRepository.addTrack(albumId, createdTrack._id);
 
-      res.status(RequestStatus.CREATED_STATUS).json({message: "Track created", data: createdAlbum});
+      res.status(RequestStatus.CREATED_STATUS).json({message: "Track created", data: createdTrack});
     } else {
       res.status(RequestStatus.BAD_REQUEST).send("Album not founded");
     }
-
-    const createdTrack = await trackRepository.create(req.body);
-
-    res.status(RequestStatus.CREATED_STATUS).json({message: "Track created", data: createdTrack});
   } catch (error) {
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }

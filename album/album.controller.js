@@ -1,6 +1,7 @@
 const albumRepository = require("./album.repository");
 const trackRepository = require("../track/track.repository");
 const artistRepository = require("../artist/artist.repository");
+const collectionRepository = require("../collection/collection.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 
@@ -29,11 +30,11 @@ exports.create = async (req, res) => {
     const artistId = req.body.artist_id;
     const artist = await artistRepository.findById(artistId);
 
-    if (artist) { // TODO test this if clause
+    if (artist) {
       const createdAlbum = await albumRepository.create(req.body);
 
       // add recent created album to artist albums
-      await artistRepository.addAlbum(createdAlbum._id);
+      await artistRepository.addAlbum(artistId, createdAlbum._id);
 
       res.status(RequestStatus.CREATED_STATUS).json({message: "Album created", data: createdAlbum});
     } else {
@@ -76,8 +77,14 @@ exports.delete = async (req, res) => {
       });
 
       // delete album from artist albums list
-      await artistRepository.removeAlbum(album._owner, albumId);
+      await artistRepository.removeAlbum(album.artist_id, albumId);
 
+      // delete album from collections
+      const collections = await collectionRepository.findAll();
+
+      collections.forEach(async function (collection) {
+        await collectionRepository.removeAlbum(collection._id, albumId);
+      });
       res.status(RequestStatus.OK).json({message: "Album deleted"});
     } else {
       res.status(RequestStatus.BAD_REQUEST).json({message: "Album not founded"});

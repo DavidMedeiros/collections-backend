@@ -1,6 +1,7 @@
 const artistRepository = require("./artist.repository");
 const albumRepository = require("../album/album.repository");
 const trackRepository = require("../track/track.repository");
+const collectionRepository = require("../collection/collection.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 
@@ -68,6 +69,13 @@ exports.delete = async (req, res) => {
 
         album._tracks.forEach(async function (trackId) {
           await trackRepository.deleteById(trackId);
+        });
+
+        // delete album from collections
+        const collections = await collectionRepository.findAll();
+
+        collections.forEach(async function (collection) {
+          await collectionRepository.removeAlbum(collection._id, albumId);
         });
       });
 
