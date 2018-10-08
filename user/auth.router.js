@@ -1,7 +1,5 @@
-// Imports gerais
-var express = require('express');
-var router = express.Router();
-
+var express        = require('express');
+var router         = express.Router();
 var authController = require('./auth.controller');
 
 router.get('/', authController.status);

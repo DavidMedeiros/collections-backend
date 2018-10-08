@@ -94,28 +94,31 @@ exports.delete = async (req, res) => {
 
       // For each user that is followed by this deleted user, remove the deleted user from his followers list
       user._following_users.forEach(async function (followingUserId) {
-        await userRepository.removeFollower(followingUserId, userId);
+          await userRepository.removeFollower(followingUserId, userId);
       });
 
       // For each collection that is followed by this deleted user, remove him from from this collection followers list
       user._following_collections.forEach(async function (followingCollectionId) {
-        await collectionRepository.removeFollower(followingCollectionId, userId);
+          await collectionRepository.removeFollower(followingCollectionId, userId);
       });
 
       // For each collection that is liked by this deleted user, remove him from from this collection likes list
       user._liked_collections.forEach(async function (likedCollectionId) {
-        await collectionRepository.removeLike(likedCollectionId, userId);
+          await collectionRepository.removeLike(likedCollectionId, userId);
       });
 
-      if (req.user._id === userId) {
-        req.logout();
+      if (req.user) {
+        if (req.user._id === userId) {
+            req.logout();
+        }
       }
 
       res.status(RequestStatus.OK).json({message: "User deleted"});
     } else {
-      res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
+        res.status(RequestStatus.BAD_REQUEST).json({message: "User not founded"});
     }
   } catch (error) {
+    console.log(error);
     res.status(RequestStatus.BAD_REQUEST).send(error);
   }
 };
@@ -192,7 +195,7 @@ exports.followUser = async (req, res) => {
 exports.unfollowUser = async (req, res) => {
   try {
     const user = req.params.user_id;
-    const userToUnfollowId = req.params.user_id;
+    const userToUnfollowId = req.params.another_user_id;
 
     const userToUnfollowUpdated = await userRepository.removeFollower(userToUnfollowId, user);
 

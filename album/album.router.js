@@ -1,12 +1,6 @@
-/**
- * @swagger
- * resourcePath: /api/album
- * description: All about API
- */
-
-var express = require('express');
-var router = express.Router();
-var RequestStatus = require('../constants/requestStatus');
+var express         = require('express');
+var router          = express.Router();
+var RequestStatus   = require('../constants/requestStatus');
 var albumController = require('./album.controller');
 
 function checkAuthentication(req,res,next){
@@ -17,27 +11,14 @@ function checkAuthentication(req,res,next){
     }
 }
 
-/**
- * @swagger
- * path: /api/album
- * operations:
- *   -  httpMethod: GET
- *      summary: Get all albums
- *      notes: Returns all albums
- *      responseClass: Album
- *      nickname: album
- *      consumes: 
- *        - application/json
- */
- 
-router.get('/', albumController.index);
+router.get('/', checkAuthentication, albumController.index);
 
-router.get('/:album_id', albumController.show);
+router.get('/:album_id', checkAuthentication, albumController.show);
 
-router.post('/', albumController.create);
+router.post('/', checkAuthentication, albumController.create);
 
-router.put('/:album_id', albumController.update);
+router.put('/:album_id', checkAuthentication, albumController.update);
 
-router.delete('/:album_id', albumController.delete);
+router.delete('/:album_id', checkAuthentication, albumController.delete);
 
 module.exports = router;

@@ -45,7 +45,9 @@ var CollectionSchema = new Schema({
         ],
         default: []
     },
-    image: Buffer
+    image: {
+        type: String
+    }
 });
 
 var Collection = mongoose.model('Collection', CollectionSchema);

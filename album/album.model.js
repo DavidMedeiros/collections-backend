@@ -35,7 +35,9 @@ var AlbumSchema = new Schema({
     ],
     default: []
   },
-  cover_art: Buffer
+  cover_art: {
+    type: String
+  }
 });
 
 var Album = mongoose.model('Album', AlbumSchema);

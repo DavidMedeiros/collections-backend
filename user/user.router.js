@@ -1,29 +1,37 @@
-var express = require('express');
-var router = express.Router();
-
+var express        = require('express');
+var router         = express.Router();
+var RequestStatus  = require('../constants/requestStatus');
 var userController = require('./user.controller');
 
-router.get('/', userController.index);
+function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        next();
+    } else{
+        res.status(RequestStatus.UNAUTHORIZED).send('User not logged.');
+    }
+}
 
-router.get('/:user_id', userController.show);
+router.get('/', checkAuthentication, userController.index);
+
+router.get('/:user_id', checkAuthentication, userController.show);
 
 router.post('/', userController.create);
 
-router.put('/:user_id', userController.update);
+router.put('/:user_id', checkAuthentication, userController.update);
 
-router.delete('/:user_id', userController.delete);
+router.delete('/:user_id', checkAuthentication, userController.delete);
 
-router.post('/:user_id/follow/collection', userController.followCollection);
+router.put('/:user_id/follow/collection', checkAuthentication, userController.followCollection);
 
-router.delete('/:user_id/unfollow/collection/:collection_id', userController.unfollowCollection);
+router.delete('/:user_id/unfollow/collection/:collection_id', checkAuthentication, userController.unfollowCollection);
 
-router.post('/:user_id/follow/user', userController.followUser);
+router.put('/:user_id/follow/user', checkAuthentication, userController.followUser);
 
-router.delete('/:user_id/unfollow/user/:user_id', userController.unfollowUser);
+router.delete('/:user_id/unfollow/user/:another_user_id', checkAuthentication, userController.unfollowUser);
 
-router.post('/:user_id/like/collection', userController.likeCollection);
+router.put('/:user_id/like/collection', checkAuthentication, userController.likeCollection);
 
-router.delete('/:user_id/dislike/collection/:collection_id', userController.dislikeCollection);
+router.delete('/:user_id/dislike/collection/:collection_id', checkAuthentication, userController.dislikeCollection);
 
 //user/:user_id/is_following?collection_id=id
 //user/:user_id/is_following?user_id=id

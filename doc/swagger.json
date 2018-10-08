@@ -1,0 +1,1151 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A Web Development class project.",
+    "version": "0.0.1",
+    "title": "Kitso Collections",
+    "license": {
+      "name": "Kitso Collection Repository",
+      "url": "https://github.com/davidmedeiros/collections-backend"
+    }
+  } ,
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "User",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users in system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create new User in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User that we want to create",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "{'result': {New user created}, 'msg': 'User created.'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user with given ID",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that we want to find",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user with give ID",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that we want to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User with new values of properties",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User updated'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user with given ID",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that we want to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User deleted'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/follow/collection": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Follow a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is following a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collection_id",
+            "description": "Id of the collection which will be followed by the user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "collection_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "collection_id": "Collection.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection followed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/unfollow/collection/{collectionId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Unfollow a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to unfollow a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of the collection that will be unfollow",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection unfollowed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/follow/user": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Follow a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is following another user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "user_id",
+            "description": "Id of the another user which will be followed by the actual user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "user_id": "User.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User followed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/unfollow/user/{anotherUserId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Unfollow a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to unfollow another user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "anotherUserId",
+            "in": "path",
+            "description": "ID of the user that will be unfollowed",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User unfollowed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/like/collection": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Like a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is liking a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collection_id",
+            "description": "Id of the collection which will be liked by the user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "collection_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "collection_id": "Collection.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection liked'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/dislike/collection/{collectionId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Dislike a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to dislike a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of the collection that will be disliked",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection disliked'}"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get a current logged user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "{'status': true, 'user': {User}}"
+          },
+          "401": {
+            "description": "{'status': false}"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Attempt to log user in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User credentials",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Auth"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'msg': 'Login successful!'}"
+          },
+          "401": {
+            "description": "{'err': 'Erro message cause'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Delete a current logged user session",
+        "responses": {
+          "200": {
+            "description": "Logged out!"
+          }
+        }
+      }
+    },
+    "/artist": {
+      "get": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Get all artists in system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Create new Artist in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "artist",
+            "description": "Artist that we want to create",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "{'data': {New artist created}, 'message': 'Artist created.'}"
+          }
+        }
+      }
+    },
+    "/artist/{artistId}": {
+      "get": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Get artist with given ID",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "path",
+            "description": "ID of artist that we want to find",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artist is found",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Update artist with give ID",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "path",
+            "description": "ID of artist that we want to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "artist",
+            "description": "Artist with new values of properties",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Artist updated'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Delete artist with given ID",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "path",
+            "description": "ID of artist that we want to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Artist deleted'}"
+          }
+        }
+      }
+    },
+    "/album": {
+      "get": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Get all albums in system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Create new Album in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "album",
+            "description": "Album that we want to create",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "{'data': {New album created}, 'message': 'Album created.'}"
+          }
+        }
+      }
+    },
+    "/album/{albumId}": {
+      "get": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Get album with given ID",
+        "parameters": [
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of album that we want to find",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Album is found",
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Update album with give ID",
+        "parameters": [
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of album that we want to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "album",
+            "description": "Album with new values of properties",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Album updated'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Album with given ID",
+        "parameters": [
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of album that we want to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Album deleted'}"
+          }
+        }
+      }
+    },
+    "/track": {
+      "get": {
+        "tags": [
+          "Track"
+        ],
+        "summary": "Get all tracks in system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Track"
+        ],
+        "summary": "Create new Track in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "track",
+            "description": "Track that we want to create",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "{'data': {New track created}, 'message': 'Track created.'}"
+          }
+        }
+      }
+    },
+    "/track/{trackId}": {
+      "get": {
+        "tags": [
+          "Track"
+        ],
+        "summary": "Get track with given ID",
+        "parameters": [
+          {
+            "name": "trackId",
+            "in": "path",
+            "description": "ID of track that we want to find",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Track is found",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Track"
+        ],
+        "summary": "Update track with give ID",
+        "parameters": [
+          {
+            "name": "trackId",
+            "in": "path",
+            "description": "ID of track that we want to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "track",
+            "description": "Track with new values of properties",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Track updated'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Track"
+        ],
+        "summary": "Track with given ID",
+        "parameters": [
+          {
+            "name": "trackId",
+            "in": "path",
+            "description": "ID of track that we want to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Track deleted'}"
+          }
+        }
+      }
+    },
+    "/collection": {
+      "get": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Get all collections in system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Create new Collection in system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "collection",
+            "description": "Collection that we want to create",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "{'data': {New collection created}, 'message': 'Collection created.'}"
+          }
+        }
+      }
+    },
+    "/collection/{collectionId}": {
+      "get": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Get collection with given ID",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of collection that we want to find",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection is found",
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Update collection with give ID",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of collection that we want to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collection",
+            "description": "Collection with new values of properties",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection updated'}"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Collection with given ID",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of collection that we want to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection deleted'}"
+          }
+        }
+      }
+    },
+    "/collection/{collectionId}/album": {
+      "put": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Add an album into a collection",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of collection that we want to add an album",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "album_id",
+            "description": "Id of the album that we want to add into a collection",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "album_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "album_id": "Album.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection updated'}"
+          }
+        }
+      }
+    },
+    "/collection/{collectionId}/album/{albumId}": {
+      "delete": {
+        "tags": [
+          "Collection"
+        ],
+        "summary": "Remove an album from a collection",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of collection that we want to remove an album",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of the album that we want to remove from collection",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection updated'}"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "username",
+        "email",
+        "password",
+        "gender",
+        "email"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "date"
+        },
+        "gender": {
+          "type": "enum",
+          "items": "male, female, other"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "_collections": {
+          "type": "array",
+          "items":{"type":"Collection.ObjectId"}
+        },
+        "_following_users": {
+          "type": "array",
+          "items":{"type":"User.ObjectId"}
+        },
+        "_following_collections": {
+          "type": "array",
+          "items":{"type":"Collection.ObjectId"}
+        },
+        "_followers": {
+          "type": "array",
+          "items":{"type":"User.ObjectId"}
+        },
+        "_liked_collections": {
+          "type": "array",
+          "items":{"type":"Collection.ObjectId"}
+        }
+      },
+      "example": {
+        "name": "User",
+        "username": "user",
+        "email": "user@email.com",
+        "password": "123456",
+        "birthday": "Sat Dec 16 1195 10:15:20 GMT-0300",
+        "gender": "other",
+        "bio": "my bio description"
+      }
+    },
+    "Auth": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "username": "user",
+        "password": "123456"
+      }
+    },
+    "Artist": {
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "date"
+        },
+        "_albums": {
+          "type": "array",
+          "items":{"type":"Album.ObjectId"}
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Lady Gaga",
+        "country": "USA"
+      }
+    },
+    "Album": {
+      "required": ["name", "released_date", "released_type", "_artist_id", "genres"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "released_date": {
+          "type": "date"
+        },
+        "released_type": {
+          "type": "string"
+        },
+        "artist_id": {
+          "type": "Artist.ObjectId"
+        },
+        "genres": {
+          "type": "array",
+          "items":{"type":"string"}
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "_tracks": {
+          "type": "array",
+          "items":{"type":"Track.ObjectId"}
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Born This Way",
+        "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
+        "released_type": "album",
+        "artist_id": "artistIdNumber",
+        "genres": ["pop", "rock", "dance"],
+        "copyright": "Interscope 2011c"
+      }
+    },
+    "Track": {
+      "required": ["name", "length", "album_id"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "length": {
+          "type": "string"
+        },
+        "album_id": {
+          "type": "Album.ObjectId"
+        }
+      },
+      "example": {
+        "name": "Born This Way",
+        "length": "4:43"
+      }
+    },
+    "Collection": {
+      "required": ["name", "_owner", "released_type", "_artist_id", "genres"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "_items": {
+          "type": "array",
+          "items":{"type":"Album.ObjectId"}
+        },
+        "_owner": {
+          "type": "User.ObjectId"
+        },
+        "_followers": {
+          "type": "array",
+          "items":{"type":"User.ObjectId"}
+        },
+        "_likes": {
+          "type": "array",
+          "items":{"type":"User.ObjectId"}
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Pop Divas",
+        "description": "My pop divas albums collection"
+      }
+    }
+  }
+}

@@ -1,12 +1,6 @@
-/**
- * @swagger
- * resourcePath: /api/artist
- * description: All about API
- */
-
-var express = require('express');
-var router = express.Router();
-var RequestStatus = require('../constants/requestStatus');
+var express          = require('express');
+var router           = express.Router();
+var RequestStatus    = require('../constants/requestStatus');
 var artistController = require('./artist.controller');
 
 function checkAuthentication(req,res,next){
@@ -17,27 +11,14 @@ function checkAuthentication(req,res,next){
     }
 }
 
-/**
- * @swagger
- * path: /api/artist
- * operations:
- *   -  httpMethod: GET
- *      summary: Get all artists
- *      notes: Returns all artists
- *      responseClass: Artist
- *      nickname: artist
- *      consumes: 
- *        - application/json
- */
- 
 router.get('/', checkAuthentication, artistController.index);
 
-router.get('/:artist_id', artistController.show);
+router.get('/:artist_id', checkAuthentication, artistController.show);
 
-router.post('/', artistController.create);
+router.post('/', checkAuthentication, artistController.create);
 
-router.put('/:artist_id', artistController.update);
+router.put('/:artist_id', checkAuthentication, artistController.update);
 
-router.delete('/:artist_id', artistController.delete);
+router.delete('/:artist_id', checkAuthentication, artistController.delete);
 
 module.exports = router;

@@ -1,12 +1,6 @@
-/**
- * @swagger
- * resourcePath: /api/track
- * description: All about API
- */
-
-var express = require('express');
-var router = express.Router();
-var RequestStatus = require('../constants/requestStatus');
+var express         = require('express');
+var router          = express.Router();
+var RequestStatus   = require('../constants/requestStatus');
 var trackController = require('./track.controller');
 
 function checkAuthentication(req,res,next){
@@ -17,27 +11,14 @@ function checkAuthentication(req,res,next){
     }
 }
 
-/**
- * @swagger
- * path: /api/track
- * operations:
- *   -  httpMethod: GET
- *      summary: Get all tracks
- *      notes: Returns all tracks
- *      responseClass: Track
- *      nickname: track
- *      consumes: 
- *        - application/json
- */
- 
 router.get('/', checkAuthentication, trackController.index);
 
-router.get('/:track_id', trackController.show);
+router.get('/:track_id', checkAuthentication, trackController.show);
 
-router.post('/', trackController.create);
+router.post('/', checkAuthentication, trackController.create);
 
-router.put('/:track_id', trackController.update);
+router.put('/:track_id', checkAuthentication, trackController.update);
 
-router.delete('/:track_id', trackController.delete);
+router.delete('/:track_id', checkAuthentication, trackController.delete);
 
 module.exports = router;
