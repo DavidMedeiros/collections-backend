@@ -21,7 +21,9 @@ var ArtistSchema = new Schema({
     ],
     default: []
   },
-  image: Buffer
+  image: {
+    type: String
+  }
 });
 
 var Artist = mongoose.model('Artist', ArtistSchema);

@@ -1,8 +1,6 @@
-
-
-var express = require('express');
-var router = express.Router();
-var RequestStatus = require('../constants/requestStatus');
+var express              = require('express');
+var router               = express.Router();
+var RequestStatus        = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
 
 /**
@@ -42,7 +40,7 @@ router.put('/:collection_id', collectionController.update);
 
 router.delete('/:collection_id', collectionController.delete);
 
-router.post('/:collection_id/album', collectionController.addAlbum);
+router.put('/:collection_id/album', collectionController.addAlbum);
 
 router.delete('/:collection_id/album/:album_id', collectionController.removeAlbum);
 

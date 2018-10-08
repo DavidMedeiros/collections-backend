@@ -1,7 +1,7 @@
 const express                      = require('express');
 const morgan                       = require('morgan');
 const path                         = require('path');
-const swagger                      = require('swagger-express');
+const swaggerUi                    = require('swagger-ui-express');
 var bodyParser                     = require('body-parser');
 var mongoose                       = require('mongoose');
 var methodOverride                 = require('method-override');
@@ -33,23 +33,28 @@ if (ENV === 'production') {
 mongoose.connect(db_url, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
-// API documentation UI
-app.use(swagger.init(app, {
-    apiVersion: '1.0',
-    swaggerVersion: '1.0',
-    basePath: 'http://localhost:3000',
-    swaggerURL: '/api/swagger',
-    swaggerJSON: '/api-docs.json',
-    swaggerUI: './doc/swagger/',
-    apis: [
-      './user/user.router.js',
-      './user/auth.router.js',
-      './artist/artist.router.js',
-      './album/album.router.js',
-      './track/track.router.js',
-      './collection/collection.router.js',
-    ]
-}));
+// // API documentation UI
+// app.use(swagger.init(app, {
+//     apiVersion: '1.0',
+//     swaggerVersion: '1.0',
+//     basePath: 'http://localhost:3000',
+//     swaggerURL: '/api/swagger',
+//     swaggerJSON: '/api-docs.json',
+//     swaggerUI: './doc/swagger/',
+//     apis: [
+//       './user/user.router.js',
+//       './user/auth.router.js',
+//       './artist/artist.router.js',
+//       './album/album.router.js',
+//       './track/track.router.js',
+//       './collection/collection.router.js',
+//     ]
+// }));
+
+//Swagger
+swaggerDocument = require('./doc/swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Session Secutiry
 require('./config/passport')(passport);
