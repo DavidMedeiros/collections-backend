@@ -28,7 +28,7 @@ exports.create = async (req, res) => {
     const albumId = req.body.album_id;
     const album = await albumRepository.findById(albumId);
 
-    if (album) { // TODO test this if clause
+    if (album) {
       const createdTrack = await trackRepository.create(req.body);
 
       // add recent created track to album tracks list
