@@ -11,14 +11,14 @@ function checkAuthentication(req,res,next){
     }
 }
 
-router.get('/', albumController.index);
+router.get('/', checkAuthentication, albumController.index);
 
-router.get('/:album_id', albumController.show);
+router.get('/:album_id', checkAuthentication, albumController.show);
 
-router.post('/', albumController.create);
+router.post('/', checkAuthentication, albumController.create);
 
-router.put('/:album_id', albumController.update);
+router.put('/:album_id', checkAuthentication, albumController.update);
 
-router.delete('/:album_id', albumController.delete);
+router.delete('/:album_id', checkAuthentication, albumController.delete);
 
 module.exports = router;

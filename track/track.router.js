@@ -13,12 +13,12 @@ function checkAuthentication(req,res,next){
 
 router.get('/', checkAuthentication, trackController.index);
 
-router.get('/:track_id', trackController.show);
+router.get('/:track_id', checkAuthentication, trackController.show);
 
-router.post('/', trackController.create);
+router.post('/', checkAuthentication, trackController.create);
 
-router.put('/:track_id', trackController.update);
+router.put('/:track_id', checkAuthentication, trackController.update);
 
-router.delete('/:track_id', trackController.delete);
+router.delete('/:track_id', checkAuthentication, trackController.delete);
 
 module.exports = router;

@@ -13,16 +13,16 @@ function checkAuthentication(req,res,next){
 
 router.get('/', checkAuthentication, collectionController.index);
 
-router.get('/:collection_id', collectionController.show);
+router.get('/:collection_id', checkAuthentication, collectionController.show);
 
-router.post('/', collectionController.create);
+router.post('/', checkAuthentication, collectionController.create);
 
-router.put('/:collection_id', collectionController.update);
+router.put('/:collection_id', checkAuthentication, collectionController.update);
 
-router.delete('/:collection_id', collectionController.delete);
+router.delete('/:collection_id', checkAuthentication, collectionController.delete);
 
-router.put('/:collection_id/album', collectionController.addAlbum);
+router.put('/:collection_id/album', checkAuthentication, collectionController.addAlbum);
 
-router.delete('/:collection_id/album/:album_id', collectionController.removeAlbum);
+router.delete('/:collection_id/album/:album_id', checkAuthentication, collectionController.removeAlbum);
 
 module.exports = router;

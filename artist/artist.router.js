@@ -13,12 +13,12 @@ function checkAuthentication(req,res,next){
 
 router.get('/', checkAuthentication, artistController.index);
 
-router.get('/:artist_id', artistController.show);
+router.get('/:artist_id', checkAuthentication, artistController.show);
 
-router.post('/', artistController.create);
+router.post('/', checkAuthentication, artistController.create);
 
-router.put('/:artist_id', artistController.update);
+router.put('/:artist_id', checkAuthentication, artistController.update);
 
-router.delete('/:artist_id', artistController.delete);
+router.delete('/:artist_id', checkAuthentication, artistController.delete);
 
 module.exports = router;
