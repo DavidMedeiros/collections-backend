@@ -24,36 +24,19 @@ if (ENV === 'production') {
   db_url = db.local_url;
 }
 
+// Cors
 if (ENV === 'production') {
   app.use(cors(corsConfig));
 } else {
   app.use(cors());
 }
 
+// Mongo
 mongoose.connect(db_url, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
-// // API documentation UI
-// app.use(swagger.init(app, {
-//     apiVersion: '1.0',
-//     swaggerVersion: '1.0',
-//     basePath: 'http://localhost:3000',
-//     swaggerURL: '/api/swagger',
-//     swaggerJSON: '/api-docs.json',
-//     swaggerUI: './doc/swagger/',
-//     apis: [
-//       './user/user.router.js',
-//       './user/auth.router.js',
-//       './artist/artist.router.js',
-//       './album/album.router.js',
-//       './track/track.router.js',
-//       './collection/collection.router.js',
-//     ]
-// }));
-
-//Swagger
+// Swagger
 swaggerDocument = require('./doc/swagger.json');
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Session Secutiry
@@ -69,18 +52,20 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-  
+
+// Morgan
 app.use(morgan('dev'));
 
+// Static Files
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-// parse application/json
+// Parse application/json
 app.use(bodyParser.json());
 
-// parse application/vnd.api+json as json
+// Parse application/vnd.api+json as json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-// parse application/x-www-form-urlencoded
+// Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.all('/*', function(req, res, next) {
@@ -91,7 +76,7 @@ app.all('/*', function(req, res, next) {
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-// Api routes
+// Api routes -------------------------------------------------------------------------
 var collectionRoutes = require('./collection/collection.router');
 app.use('/api/collection', collectionRoutes);
 
@@ -112,7 +97,7 @@ app.use('/api/auth', authRoutes);
 
 // start app
 app.listen(PORT);
-console.log('Example app listening on port ' + PORT);
+console.log('Kitso Collections app listening on port ' + PORT);
 
 // expose app
 module.exports = app;
