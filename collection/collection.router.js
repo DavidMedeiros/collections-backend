@@ -1,13 +1,15 @@
-/**
- * @swagger
- * resourcePath: /api/collection
- * description: All about API
- */
+
 
 var express = require('express');
 var router = express.Router();
 var RequestStatus = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
+
+/**
+ * @swagger
+ * resourcePath: /api/collection
+ * description: All about API
+ */
 
 function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){

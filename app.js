@@ -1,30 +1,30 @@
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var methodOverride = require('method-override');
-var passport = require('passport');
-var session = require('express-session');
-const swagger = require('swagger-express');
-const app = express();
-var MongoStore = require('connect-mongo')(session);
-var cors = require('cors');
-var corsConfig = require('./config/cors');
+const express                      = require('express');
+const morgan                       = require('morgan');
+const path                         = require('path');
+const swagger                      = require('swagger-express');
+var bodyParser                     = require('body-parser');
+var mongoose                       = require('mongoose');
+var methodOverride                 = require('method-override');
+var passport                       = require('passport');
+var session                        = require('express-session');
+var MongoStore                     = require('connect-mongo')(session);
+var cors                           = require('cors');
+var corsConfig                     = require('./config/cors');
+const app                          = express();
 
 // config files
 var db = require('./config/db');
 var PORT = process.env.PORT || 3000;
-var ENV = process.env.ENVIROMENT || 'development'
+var ENV = process.env.ENVIROMENT || 'development';
 
 var db_url;
-if (ENV == 'production') {
+if (ENV === 'production') {
   db_url = db.url;
 } else {
   db_url = db.local_url;
 }
 
-if (ENV == 'production') {
+if (ENV === 'production') {
   app.use(cors(corsConfig));
 } else {
   app.use(cors());
@@ -41,7 +41,14 @@ app.use(swagger.init(app, {
     swaggerURL: '/api/swagger',
     swaggerJSON: '/api-docs.json',
     swaggerUI: './doc/swagger/',
-    apis: ['./collection/collection.router.js', './album/album.router.js', './artist/artist.router.js', './track/track.router.js']
+    apis: [
+      './user/user.router.js',
+      './user/auth.router.js',
+      './artist/artist.router.js',
+      './album/album.router.js',
+      './track/track.router.js',
+      './collection/collection.router.js',
+    ]
 }));
 
 // Session Secutiry
@@ -100,7 +107,7 @@ app.use('/api/auth', authRoutes);
 
 // start app
 app.listen(PORT);
-console.log('Example app listening on port ' + PORT)
+console.log('Example app listening on port ' + PORT);
 
 // expose app
 module.exports = app;

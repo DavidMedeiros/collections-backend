@@ -25,6 +25,7 @@ exports.show = async (req, res) => {
   }
 };
 
+// TODO Move to Repository and remove lists fields from criation
 exports.create = (req, res) => {
   var user = new User(req.body);
   user.name = req.body.username;
