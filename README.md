@@ -7,11 +7,11 @@ _:cd: breve descrição do projeto_
 O Kitso Collections é uma plataforma onde o usuário pode realizar o gerenciamento de suas coleções de CDs/Vinis. Além disso, funciona também como uma rede social para tais colecionadores, uma vez que, eles poderão seguir usuários, visualizar, curtir e seguir coleções deles. Também sera possível visualizar algumas estatísticas sobre as coleções do usuário, por exemplo, um gráfico de gêneros musicais pertencentes a coleção. 
 
 
-- Execução
+### Execução
 
 > Instalação de dependências
 
-(você deve ter o npm instalado)
+_você deve ter o npm instalado_
 
 `$ npm install`
 
@@ -19,4 +19,4 @@ O Kitso Collections é uma plataforma onde o usuário pode realizar o gerenciame
 
 `$ npm start`
 
-O servidor irá ser executado localmente na porta 3000
+O servidor será executado localmente na porta 3000
