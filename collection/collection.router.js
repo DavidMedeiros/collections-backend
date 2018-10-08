@@ -3,12 +3,6 @@ var router               = express.Router();
 var RequestStatus        = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
 
-/**
- * @swagger
- * resourcePath: /api/collection
- * description: All about API
- */
-
 function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){
         next();
@@ -17,19 +11,6 @@ function checkAuthentication(req,res,next){
     }
 }
 
-/**
- * @swagger
- * path: /api/collection
- * operations:
- *   -  httpMethod: GET
- *      summary: Get all collections
- *      notes: Returns all collections 
- *      responseClass: Collection
- *      nickname: collection
- *      consumes: 
- *        - application/json
- */
- 
 router.get('/', checkAuthentication, collectionController.index);
 
 router.get('/:collection_id', collectionController.show);

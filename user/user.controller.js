@@ -196,7 +196,7 @@ exports.followUser = async (req, res) => {
 exports.unfollowUser = async (req, res) => {
   try {
     const user = req.params.user_id;
-    const userToUnfollowId = req.params.user_id;
+    const userToUnfollowId = req.params.another_user_id;
 
     const userToUnfollowUpdated = await userRepository.removeFollower(userToUnfollowId, user);
 

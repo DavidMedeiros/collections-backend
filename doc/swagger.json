@@ -146,6 +146,210 @@
         }
       }
     },
+    "/user/{userId}/follow/collection": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Follow a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is following a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collection_id",
+            "description": "Id of the collection which will be followed by the user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "collection_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "collection_id": "Collection.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection followed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/unfollow/collection/{collectionId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Unfollow a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to unfollow a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of the collection that will be unfollow",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection unfollowed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/follow/user": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Follow a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is following another user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "user_id",
+            "description": "Id of the another user which will be followed by the actual user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "user_id": "User.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User followed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/unfollow/user/{anotherUserId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Unfollow a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to unfollow another user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "anotherUserId",
+            "in": "path",
+            "description": "ID of the user that will be unfollowed",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'User unfollowed'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/like/collection": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Like a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that is liking a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collection_id",
+            "description": "Id of the collection which will be liked by the user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "collection_id": {
+                  "type": "string"
+                }
+              },
+              "example":{
+                "collection_id": "Collection.ObjectId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection liked'}"
+          }
+        }
+      }
+    },
+    "/user/{userId}/dislike/collection/{collectionId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Dislike a collection",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that want to dislike a collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "ID of the collection that will be disliked",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{'message': 'Collection disliked'}"
+          }
+        }
+      }
+    },
     "/auth": {
       "get": {
         "tags": [
