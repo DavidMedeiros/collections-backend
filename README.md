@@ -27,7 +27,7 @@ O servidor será executado no endereço:  `http://localhost:3000/`
 A documentação está localizada no arquivo [swagger.json](https://github.com/DavidMedeiros/collections-backend/blob/master/doc/swagger.json) e pode ser visualizada no endereço: `http://localhost:3000/api-docs/`
 
 ##### Testes
-Para rodar a switch de testes basta utilizar o seguinte comando
+Para rodar a suite de testes basta utilizar o seguinte comando
 ``` 
 $ npm test 
 ```
