@@ -13,7 +13,7 @@ function loginUser() {
   return function(done) {
     server
       .post('/api/auth')
-      .send({ username: 'user', password: '123456' })
+      .send({ username: 'myusername', password: '123456' })
       .expect(200)
       .end(onResponse);
 
@@ -29,7 +29,7 @@ const runTests = () => {
     let user = {
       "_id": userId.toString(),
       "name": "User",
-      "username": "user",
+      "username": "myusername",
       "email": "user@email.com",
       "password": "123456",
       "birthday": "Sat Dec 16 1195 10:15:20 GMT-0300",
@@ -60,7 +60,7 @@ const runTests = () => {
           assert(response.body[0]._followers, '[]');
           assert(response.body[0]._liked_collections, '[]');
           assert(response.body[0].name, 'user');
-          assert(response.body[0].username, 'user');
+          assert(response.body[0].username, 'myusername');
           assert(response.body[0].email, 'user@email.com');
           assert(response.body[0].birthday, '1195-12-16T13:15:20.000Z');
           assert(response.body[0].gender, 'other');
@@ -84,7 +84,7 @@ const runTests = () => {
           assert(response.body._followers, '[]');
           assert(response.body._liked_collections, '[]');
           assert(response.body.name, 'user');
-          assert(response.body.username, 'user');
+          assert(response.body.username, 'myusername');
           assert(response.body.email, 'user@email.com');
           assert(response.body.birthday, '1195-12-16T13:15:20.000Z');
           assert(response.body.gender, 'other');
@@ -98,7 +98,6 @@ const runTests = () => {
     it('login', loginUser());
     let user = {
       "name": "User Edited",
-      "username": "user-edited",
       "email": "user-edited@email.com",
     };
     it('respond with 200 edited', (done) => {
@@ -113,7 +112,6 @@ const runTests = () => {
         .expect(200)
         .then(response => {
           assert(response.body.name, 'User Edited');
-          assert(response.body.username, 'user-edited');
           assert(response.body.email, 'user-edited@email.com');
 
           done()
