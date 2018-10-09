@@ -9,14 +9,25 @@ O Kitso Collections é uma plataforma onde o usuário pode realizar o gerenciame
 
 ### Execução
 
-> Instalação de dependências
+##### Instalação de dependências
 
-_você deve ter o npm instalado_
+> _você deve ter o npm instalado_
 
-`$ npm install`
+``` 
+$ npm install 
+```
 
-> Inicialização
+##### Inicialização
+``` 
+$ npm start 
+```
+O servidor será executado no endereço:  `http://localhost:3000/`
 
-`$ npm start`
+##### Documentação
+A documentação está localizada no arquivo [swagger.json](https://github.com/DavidMedeiros/collections-backend/blob/master/doc/swagger.json) e pode ser visualizada no endereço: `http://localhost:3000/api-docs/`
 
-O servidor será executado localmente na porta 3000
+##### Testes
+Para rodar a switch de testes basta utilizar o seguinte comando
+``` 
+$ npm test 
+```
