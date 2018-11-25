@@ -21,10 +21,10 @@ $ npm install
 ``` 
 $ npm start 
 ```
-O servidor será executado no endereço:  `http://localhost:3000/`
+O servidor será executado no endereço:  `http://localhost:3030/`
 
 ##### Documentação
-A documentação está localizada no arquivo [swagger.json](https://github.com/DavidMedeiros/collections-backend/blob/master/doc/swagger.json) e pode ser visualizada no endereço: `http://localhost:3000/api-docs/`
+A documentação está localizada no arquivo [swagger.json](https://github.com/DavidMedeiros/collections-backend/blob/master/doc/swagger.json) e pode ser visualizada no endereço: `http://localhost:3030/api-docs/`
 
 ##### Testes
 Para rodar a suite de testes basta utilizar o seguinte comando

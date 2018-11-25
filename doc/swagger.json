@@ -9,7 +9,7 @@
       "url": "https://github.com/davidmedeiros/collections-backend"
     }
   } ,
-  "host": "localhost:3000",
+  "host": "localhost:3030",
   "basePath": "/api",
   "tags": [
     {

@@ -14,7 +14,7 @@ const app                          = express();
 
 // config files
 var db = require('./config/db');
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3030;
 var ENV = process.env.ENVIROMENT || 'development';
 
 var db_url;
@@ -39,16 +39,30 @@ mongoose.set('useCreateIndex', true);
 swaggerDocument = require('./doc/swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use(function(req, res, next) {
+res.header('Access-Control-Allow-Credentials', true);
+res.header('Access-Control-Allow-Origin', req.headers.origin);
+res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+if ('OPTIONS' == req.method) {
+     res.send(200);
+ } else {
+     next();
+ }
+});
+
 // Session Secutiry
 require('./config/passport')(passport);
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 60 * 60 // = 60 minutos de sessão
+    ttl: 30 * 60 // = 60 minutos de sessão
   }),
-  secret: process.env.SESSION_SECRET || 'local-secret',
+  secret: process.env.SESSION_SECRET || 'pocpoc',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -67,11 +81,11 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.all('/*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+//
+// app.all('/*', function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
