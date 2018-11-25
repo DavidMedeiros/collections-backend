@@ -4,6 +4,7 @@ var RequestStatus        = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
 
 function checkAuthentication(req,res,next){
+  console.log(req.session);
     if(req.isAuthenticated()){
         next();
     } else{
@@ -15,7 +16,7 @@ router.get('/', checkAuthentication, collectionController.index);
 
 router.get('/:collection_id', checkAuthentication, collectionController.show);
 
-router.post('/', checkAuthentication, collectionController.create);
+router.post('/', /*checkAuthentication,*/ collectionController.create);
 
 router.put('/:collection_id', checkAuthentication, collectionController.update);
 

@@ -1,6 +1,6 @@
 const app       = require('../app');
 const request   = require('supertest');
-const server    = request.agent('http://localhost:3000');
+const server    = request.agent('http://localhost:3030');
 const mongoose  = require('mongoose');
 const userId    = new mongoose.Types.ObjectId;
 const assert    = require("assert");
