@@ -28,7 +28,7 @@ if (ENV === 'production') {
 if (ENV === 'production') {
   app.use(cors(corsConfig));
 } else {
-  app.use(cors(corsConfig));
+  app.use(cors());
 }
 
 // Mongo
