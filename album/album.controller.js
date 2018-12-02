@@ -25,6 +25,25 @@ exports.show = async (req, res) => {
   }
 };
 
+exports.search = async (req, res) => {
+  try {
+    const albumName = req.query.name;
+    const artistName = req.query.artist;
+    let search = [];
+
+    if (albumName) {
+      search = await albumRepository.searchByName(albumName);
+    } else {
+      console.log('pesquisando por' + artistName);
+      search = await albumRepository.searchByArtist(artistName);
+    }
+
+    res.status(RequestStatus.OK).json(search);
+  } catch (error) {
+    res.status(RequestStatus.BAD_REQUEST).json(error);
+  }
+};
+
 exports.create = async (req, res) => {
   try {
     const artistId = req.body.artist_id;

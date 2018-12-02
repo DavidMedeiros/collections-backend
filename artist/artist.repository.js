@@ -34,3 +34,7 @@ exports.addAlbum = async (artistId, albumId) => {
 exports.removeAlbum = async (artistId, albumId) => {
   return await Artist.updateOne({ _id: artistId }, { $pull: { _albums: albumId } });
 };
+
+exports.searchByName = async (artistName) => {
+  return await Artist.find({name: new RegExp(artistName, "i")}).limit(5);
+};

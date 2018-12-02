@@ -1,4 +1,4 @@
 module.exports = {
-    origin: 'http://kitso-collections.herokuapp.com',
+    origin: '*',
     optionsSuccessStatus: 200
 }

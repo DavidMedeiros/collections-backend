@@ -1,4 +1,5 @@
 var Album = require('./album.model');
+var artistRepository = require('../artist/artist.repository');
 
 exports.create = async (data) => {
   const album = new Album(data);
@@ -34,4 +35,29 @@ exports.addTrack = async (albumId, trackId) => {
 
 exports.removeTrack = async (albumId, trackId) => {
   return await Album.updateOne({ _id: albumId }, { $pull: { _tracks: trackId } });
+};
+
+exports.searchByName = async (albumName) => {
+  return await Album.find({name: new RegExp(albumName, "i")}).limit(5);
+};
+
+exports.searchByArtist = async (artistName) => {
+  let albumsPromisse = [];
+  let albums = [];
+
+  artists = await artistRepository.searchByName(artistName);
+
+  artists.forEach(async function(artist) {
+    artist._albums.forEach(async function (albumId) {
+      let album = Album.findById(albumId);
+
+      albumsPromisse.push(album);
+    })
+  });
+
+  await Promise.all(albumsPromisse).then(result => {
+    albums.push(result);
+  });
+
+  return albums;
 };

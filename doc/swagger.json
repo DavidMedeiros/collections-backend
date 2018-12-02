@@ -570,6 +570,43 @@
         }
       }
     },
+    "/album/search": {
+      "get": {
+        "tags": [
+          "Album"
+        ],
+        "summary": "Get all albums that match with the query searched",
+        "description": "Find albums searching by their names or artist. Use only one query bellow per search.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Album Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "description": "Artist Name",
+            "required": false,
+            "type": "string"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          },
+          "401": {
+            "description": "User not logged."
+          }
+        }
+      }
+    },
     "/album/{albumId}": {
       "get": {
         "tags": [
