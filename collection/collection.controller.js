@@ -1,5 +1,6 @@
 const collectionRepository = require("./collection.repository");
 const userRepository = require("../user/user.repository");
+const albumRepository = require("../album/album.repository");
 
 var RequestStatus = require('../constants/requestStatus');
 
@@ -96,9 +97,11 @@ exports.addAlbum = async (req, res) => {
 
     if (updatedCollection.n > 0) {
       if(updatedCollection.nModified) {
-        res.status(RequestStatus.OK).json({message: "Collection updated"});
+        const albumPutted = await albumRepository.findById(albumId);
+
+        res.status(RequestStatus.OK).json({message: "Collection updated", album: albumPutted});
       } else {
-        res.status(RequestStatus.OK).json({message: "Collection not updated"});
+        res.status(RequestStatus.OK).json({message: "Collection not updated", album: []});
       }
     } else {
       res.status(RequestStatus.BAD_REQUEST).json({message: "Collection not founded"});

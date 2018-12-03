@@ -34,7 +34,6 @@ exports.search = async (req, res) => {
     if (albumName) {
       search = await albumRepository.searchByName(albumName);
     } else {
-      console.log('pesquisando por' + artistName);
       search = await albumRepository.searchByArtist(artistName);
     }
 

@@ -59,5 +59,5 @@ exports.searchByArtist = async (artistName) => {
     albums.push(result);
   });
 
-  return albums;
+  return albums[0];
 };

@@ -953,7 +953,7 @@
         ],
         "responses": {
           "200": {
-            "description": "{'message': 'Collection updated'}"
+            "description": "{'message': 'Collection updated', 'album': 'Album putted'}"
           }
         }
       }
