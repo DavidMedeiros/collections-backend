@@ -49,7 +49,7 @@ exports.create = async (req, res) => {
     const artist = await artistRepository.findById(artistId);
 
     if (artist) {
-      const createdAlbum = await albumRepository.create(req.body);
+      const createdAlbum = await albumRepository.create(req.body, artist.name);
 
       // add recent created album to artist albums
       await artistRepository.addAlbum(artistId, createdAlbum._id);

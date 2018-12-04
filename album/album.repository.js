@@ -1,8 +1,10 @@
 var Album = require('./album.model');
 var artistRepository = require('../artist/artist.repository');
 
-exports.create = async (data) => {
+exports.create = async (data, artistName) => {
+  data['artist_name'] = artistName;
   const album = new Album(data);
+
   return await album.save();
 };
 

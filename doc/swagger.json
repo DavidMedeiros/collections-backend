@@ -1106,7 +1106,10 @@
         "released_type": {
           "type": "string"
         },
-        "artist_id": {
+        "artist_name": {
+          "type": "string"
+        },
+        "_artist_id": {
           "type": "Artist.ObjectId"
         },
         "genres": {

@@ -19,6 +19,10 @@ var AlbumSchema = new Schema({
     ref: 'Artist',
     required: true
   },
+  artist_name: {
+    type: String,
+    required: true
+  },
   genres: {
     type: [],
     required: true
