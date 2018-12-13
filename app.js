@@ -26,7 +26,7 @@ if (ENV === 'production') {
 
 // Cors
 if (ENV === 'production') {
-  app.use(cors(corsConfig));
+  app.use(cors());
 } else {
   app.use(cors());
 }
