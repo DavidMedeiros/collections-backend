@@ -36,7 +36,11 @@ mongoose.connect(db_url, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 // Swagger
-swaggerDocument = require('./doc/swagger.json');
+if (ENV === 'production') {
+  swaggerDocument = require('./doc/swaggerProduction.json');
+} else {
+  swaggerDocument = require('./doc/swagger.json');
+}
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(function(req, res, next) {
@@ -111,7 +115,7 @@ app.use('/api/auth', authRoutes);
 
 // start app
 app.listen(PORT);
-console.log('Kitso Collections app listening on port ' + PORT);
+console.log('Discollection app listening on port ' + PORT);
 
 // expose app
 module.exports = app;

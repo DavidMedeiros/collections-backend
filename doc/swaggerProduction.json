@@ -9,7 +9,7 @@
       "url": "https://github.com/davidmedeiros/collections-backend"
     }
   } ,
-  "host": "localhost:3030",
+  "host": "https://discollection.herokuapp.com",
   "basePath": "/api",
   "tags": [
     {
