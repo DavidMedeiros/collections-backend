@@ -3,27 +3,20 @@ var router               = express.Router();
 var RequestStatus        = require('../constants/requestStatus');
 var collectionController = require('./collection.controller');
 
-function checkAuthentication(req,res,next){
-  console.log(req.session);
-    if(req.isAuthenticated()){
-        next();
-    } else{
-        res.status(RequestStatus.UNAUTHORIZED).send('User not logged.');
-    }
-}
+ 
 
-router.get('/', checkAuthentication, collectionController.index);
+router.get('/',  collectionController.index);
 
-router.get('/:collection_id', checkAuthentication, collectionController.show);
+router.get('/:collection_id', collectionController.show);
 
 router.post('/', /*checkAuthentication,*/ collectionController.create);
 
-router.put('/:collection_id', checkAuthentication, collectionController.update);
+router.put('/:collection_id', collectionController.update);
 
-router.delete('/:collection_id', checkAuthentication, collectionController.delete);
+router.delete('/:collection_id', collectionController.delete);
 
-router.put('/:collection_id/album', checkAuthentication, collectionController.addAlbum);
+router.put('/:collection_id/album', collectionController.addAlbum);
 
-router.delete('/:collection_id/album/:album_id', checkAuthentication, collectionController.removeAlbum);
+router.delete('/:collection_id/album/:album_id', collectionController.removeAlbum);
 
 module.exports = router;
