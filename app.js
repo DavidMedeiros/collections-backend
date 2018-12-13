@@ -65,6 +65,7 @@ app.use(session({
     ttl: 30 * 60 // = 60 minutos de sessão
   }),
   secret: process.env.SESSION_SECRET || 'pocpoc',
+  secureProxy: true,
   resave: false,
   saveUninitialized: false,
 }));
