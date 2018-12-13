@@ -994,7 +994,7 @@
         "username",
         "email",
         "password",
-        "gender",
+        "image",
         "email"
       ],
       "properties": {
@@ -1010,12 +1010,8 @@
         "password": {
           "type": "string"
         },
-        "birthday": {
-          "type": "date"
-        },
-        "gender": {
-          "type": "enum",
-          "items": "male, female, other"
+        "image": {
+          "type": "string"
         },
         "bio": {
           "type": "string"
@@ -1046,8 +1042,7 @@
         "username": "user",
         "email": "user@email.com",
         "password": "123456",
-        "birthday": "Sat Dec 16 1195 10:15:20 GMT-0300",
-        "gender": "other",
+        "image": "url",
         "bio": "my bio description"
       }
     },
@@ -1095,7 +1090,7 @@
       }
     },
     "Album": {
-      "required": ["name", "released_date", "released_type", "_artist_id", "genres"],
+      "required": ["name", "released_date", "released_type", "_artist_id", "genres", "image"],
       "properties": {
         "name": {
           "type": "string"
@@ -1132,6 +1127,7 @@
         "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
         "released_type": "album",
         "artist_id": "artistIdNumber",
+        "image" : "url",
         "genres": ["pop", "rock", "dance"],
         "copyright": "Interscope 2011c"
       }
@@ -1155,7 +1151,7 @@
       }
     },
     "Collection": {
-      "required": ["name", "_owner", "released_type", "_artist_id", "genres"],
+      "required": ["name", "_owner", "released_type", "_artist_id", "genres", "image"],
       "properties": {
         "name": {
           "type": "string"
@@ -1184,6 +1180,7 @@
       },
       "example": {
         "name": "Pop Divas",
+        "image": "url",
         "description": "My pop divas albums collection"
       }
     }

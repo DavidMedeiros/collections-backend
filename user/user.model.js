@@ -34,18 +34,13 @@ var UserSchema = new Schema({
 		required: true,
 		select: false
 	},
-  birthday: {
-    type: Date
-  },
-  gender : {
-    type: String,
-    required: true,
-    enum: ['male', 'female', 'other']
-  },
   bio: {
     type: String,
     maxlength: 140,
     default: "No description."
+  },
+  image: {
+    type: String
   },
   _collections: {
     type: [
