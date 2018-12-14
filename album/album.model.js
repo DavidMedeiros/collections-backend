@@ -39,7 +39,7 @@ var AlbumSchema = new Schema({
     ],
     default: []
   },
-  cover_art: {
+  image: {
     type: String
   }
 });
