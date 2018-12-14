@@ -31,3 +31,5 @@ Para rodar a suite de testes basta utilizar o seguinte comando
 ``` 
 $ npm test 
 ```
+#### Deploy
+Este repositório está disponivel atraves do link: https://discollection.herokuapp.com/api-docs
